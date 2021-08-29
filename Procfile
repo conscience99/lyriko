@@ -1,1 +1,1 @@
-web: gunicorn lyrik_backend.wsgi --log-file -
+web: gunicorn lyriko_backend.wsgi --log-file -
