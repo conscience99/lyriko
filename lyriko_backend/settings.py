@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
@@ -167,18 +168,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = 'https://lyriko.herokuapp.com/static/'
+STATICFILES_STORAGE = (
+    'whitenoise.storage.CompressedManifestStaticFilesStorage'
+)
+
+STATIC_URL = '/static/'
 
 MEDIA_URL = '/images/'
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    #BASE_DIR / 'static',
     BASE_DIR / 'frontend/build/static',
     os.path.join(BASE_DIR, 'frontend/build/static')
 ]
 MEDIA_ROOT = BASE_DIR / 'static/images'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
+WHITENOISE_ROOT = BASE_DIR / 'frontend/build/root',
 
 
 # Default primary key field type
