@@ -2,6 +2,7 @@ from django.shortcuts import render
 from . import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.views import View
 from rest_framework import status
 from . models import SaveList, User, Lyrics, SearchHistory, VerificationCode
 from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
@@ -25,12 +26,20 @@ from django.contrib.sites.shortcuts import get_current_site
 from .utils import Util
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.template import Context
+from django.http import HttpResponse, HttpResponseNotFound
+import os
 
 
 from datetime import datetime
 import random
 import time
 now = datetime.now()
+
+
+class IndexView(View):
+    def get(self, request):
+        template = get_template('index.html')
+        return render(request,'/index.html')
 
 
 class SignupView(APIView):

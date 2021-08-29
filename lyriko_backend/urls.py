@@ -18,12 +18,19 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
+from django.shortcuts import render
+from django.views import View
+
+class IndexView(View):
+    def get(self, request):
+        return render(request,'index.html', content_type='text/html')
 
 urlpatterns = [
     path('api-auth', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('',TemplateView.as_view(template_name='index.html'))
+    #path('',TemplateView.as_view(template_name='index.html')),
+    re_path(r'^(?!static)(?:.*)/?$',IndexView.as_view() )
    
     
 ]
