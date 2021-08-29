@@ -1,0 +1,148 @@
+.footer {
+  position: top;
+}
+
+.abt-brd-wrap {
+  margin-bottom: 20px;
+}
+.brand-logo {
+  width: 60px;
+  height: 60px;
+}
+.brand-name {
+  font-weight: bold;
+  transform: scale(1.2);
+
+  padding-bottom: 17px;
+
+  display: inline-block;
+}
+@media screen and (min-width: 660px) {
+  .copyright,
+  .maker {
+    margin-top: 35px;
+    font-size: 13px;
+    color: rgb(141, 141, 141);
+  }
+  .footer-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 0px;
+  }
+
+  .main-footer {
+    padding: 20px;
+    align-items: center;
+    padding-top: 15px;
+    color: rgb(167, 167, 167);
+    white-space: pre;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(25, 25, 25, 1) 44%,
+      rgba(19, 19, 19, 1) 100%
+    );
+    height: 40rem;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 0px;
+    padding: 10%;
+  }
+  .about-text {
+    margin-bottom: 10px;
+  }
+  .about-txt {
+    margin-bottom: 30px;
+
+    margin-top: -25px;
+  }
+  .useful-link-txt {
+    padding: 10px;
+    margin-bottom: 10px;
+    color: red;
+    background: #ffe115 !important;
+  }
+
+  .about-brand {
+    width: 40%;
+  }
+
+  .useful-links {
+    width: 100%;
+  }
+}
+.footer-links-wrapper {
+  width: 90%;
+}
+.footer-link {
+  list-style: none;
+}
+
+.footer-link-item {
+  transition: 200ms;
+  padding: 10px;
+  cursor: pointer;
+}
+a {
+  color: rgb(184, 184, 184) !important;
+}
+a:hover {
+  color: rgb(231, 231, 231) !important;
+}
+.footer-link-icon {
+  margin-right: 5px;
+}
+.abt-txt-rdmr {
+  color: #7fa9e8;
+}
+
+@media screen and (max-width: 659px) {
+  .footer-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 10px;
+  }
+  .copyright,
+  .maker {
+    margin-top: 35px;
+    font-size: 13px;
+    color: rgb(141, 141, 141);
+
+    justify-items: left;
+  }
+  .main-footer {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(25, 25, 25, 1) 44%,
+      rgba(19, 19, 19, 1) 100%
+    );
+
+    display: grid;
+    grid-template-columns: repeat(1, 1);
+    grid-gap: 50px;
+    text-align: center;
+    justify-items: center;
+    color: rgb(167, 167, 167);
+    padding-bottom: 30px;
+  }
+  .useful-link-txt {
+    padding: 10px;
+    margin-bottom: 10px;
+    color: red;
+    text-align: center;
+    background: #ffe115 !important;
+  }
+  .about-brand {
+    width: 90%;
+    font-size: 15px;
+  }
+
+  .useful-links {
+    width: 90%;
+
+    text-align: left;
+  }
+}

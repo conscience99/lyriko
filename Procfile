@@ -1,0 +1,1 @@
+web: gunicorn lyrik_backend.wsgi --log-file -
