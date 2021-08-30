@@ -47,7 +47,6 @@ body {
 }
 .middle {
   padding: 20px;
-  min-height: 90rem !important;
 }
 @media screen and (min-width: 1110px) {
   .middle {

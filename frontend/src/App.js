@@ -140,16 +140,21 @@ function App() {
   };
   const getRandomLyrics = () => {
     setLyricsLoading(true);
+    setNotFound(false);
     setTimeout(() => {
-      fetch("https://lyriko.herokuapp.com/api/random", {
+      fetch("http://lyriko.herokuapp.com/api/random", {
         method: "get",
       })
         .then((lyrics) => lyrics.json())
         .then((lyrics) => {
-          setLyrics(lyrics.lyrics);
-          document.title = `${lyrics.lyrics.title} - ${lyrics.lyrics.artist} - Lyriko`;
-          setNotFound(false);
-          setLyricsLoading(false);
+          if (lyrics.lyrics) {
+            setLyrics(lyrics.lyrics);
+            document.title = `${lyrics.lyrics.title} - ${lyrics.lyrics.artist} - Lyriko`;
+            setNotFound(false);
+            setLyricsLoading(false);
+          } else {
+            setLyricsLoading(false);
+          }
         });
     }, 1000);
   };
@@ -175,7 +180,7 @@ function App() {
             title: title.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
               letter.toUpperCase()
             ),
-            username: user["user"] ? user["user"].username : "",
+            username: token["auth"] != undefined ? user["user"].username : " ",
           }),
         }
       )
@@ -184,6 +189,7 @@ function App() {
           if (res.error) {
             setNotFound(true);
             setLyrics();
+            setLyricsLoading(false);
           } else {
             setLyrics(res.lyrics);
             document.title = `${res.lyrics.title} - ${res.lyrics.artist} - Lyriko`;
