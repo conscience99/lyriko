@@ -214,21 +214,16 @@ class SingleLyricsView(APIView):
     def post(self, request,artist_slug,title_slug, *args, **kwargs ):
         title=request.data['title']
         artist = request.data['artist']
-        print(f'{artist_slug}')
-        
         lyrics=Lyrics()
         search_history=SearchHistory()
         now=datetime.now()
-
         ### Record activities ###
         if title != "" or artist != "":
-            
             search_history.searcher_username = request.data['username']
             search_history.artist=artist.replace('-',' ')
             search_history.title=title.replace('-',' ')
             #search_history.moment=now.strftime("%B %d, %Y, %I:%M %p")
             search_history.save()
-            
         try:
             lyrics_item=Lyrics.objects.get(artist_slug=artist_slug, title_slug=title_slug)
             views = lyrics_item.views
@@ -236,18 +231,13 @@ class SingleLyricsView(APIView):
             lyrics_item.views = updt_views
             lyrics_item.save()
             serializer=serializers.LyricsSerializer(lyrics_item, many=False)
-            
             response={'lyrics':serializer.data}
             return Response(response,status=status.HTTP_200_OK )
         except:
             flat_title=title_slug.replace('-', '')
             flat_artist= artist_slug.replace('-', '')
             try:
-                print(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html")
                 page = requests.get(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html",headers={'User-Agent': 'Mozilla/5.0'})
-                print(page.status_code)
-
-            
                 if (page.status_code == 200):
                     soup = BeautifulSoup(page.content, 'html.parser')
                     lyrics_text = soup.find_all('div')[20].get_text()
