@@ -245,6 +245,7 @@ class SingleLyricsView(APIView):
             try:
                 print(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html")
                 page = requests.get(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html")
+                print(page.status_code)
 
             
                 if (page.status_code == 200):
