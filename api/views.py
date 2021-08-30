@@ -238,7 +238,7 @@ class SingleLyricsView(APIView):
             flat_artist= artist_slug.replace('-', '')
             headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
             try:
-                page = requests.get(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html",headers=headers})
+                page = requests.get(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html",headers=headers)
                 print(page.status_code)
                 if (page.status_code == 200):
                     soup = BeautifulSoup(page.content, 'html.parser')
