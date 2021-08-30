@@ -234,27 +234,13 @@ class SingleLyricsView(APIView):
             response={'lyrics':serializer.data}
             return Response(response,status=status.HTTP_200_OK )
         except:
-            flat_title=title_slug.replace('-', '')
-            flat_artist= artist_slug.replace('-', '')
-            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'}
+            flat_title=title_slug.replace('-', ' ')
+            flat_artist= artist_slug.replace('-', ' ')
+            url = 'https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_track={flat_title}&q_artist={flat_artist}&apikey=a6941269e21e8c547c8c8b5bdffe5977'
             try:
-                page = requests.get(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html",headers=headers)
-                print(page.status_code)
-                ''' if (page.status_code == 200):
-                    soup = BeautifulSoup(page.content, 'html.parser')
-                    lyrics_text = soup.find_all('div')[20].get_text()
-                    lyrics.title=title
-                    lyrics.artist=artist
-                    lyrics.title_slug=title_slug
-                    lyrics.artist_slug=artist_slug
-                    lyrics.body=str(lyrics_text)
-                    lyrics.save()
-                    lyrics_item=Lyrics.objects.get(title_slug=title_slug, artist_slug=artist_slug)
-                    serializer=serializers.LyricsSerializer(lyrics_item, many=False)
-                    response={'lyrics':serializer.data}
-                    return Response(response,status=status.HTTP_200_OK )
-                else:
-                    return Response({'error':'Not Found'}) '''
+                lyr = requests.get(url)
+                print(lyr)
+                
             except:
                 return Response({'error':'Not Found'})
 
