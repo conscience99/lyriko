@@ -243,7 +243,7 @@ class SingleLyricsView(APIView):
             flat_title=title_slug.replace('-', '')
             flat_artist= artist_slug.replace('-', '')
             try:
-                print(f'{flat_title}/{flat_artist}')
+                print(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html")
                 page = requests.get(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html")
 
             
