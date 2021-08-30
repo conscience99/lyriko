@@ -238,6 +238,7 @@ class SingleLyricsView(APIView):
             flat_artist= artist_slug.replace('-', '')
             try:
                 page = requests.get(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html",headers={'User-Agent': 'Mozilla/5.0'})
+                print(page.status_code)
                 if (page.status_code == 200):
                     soup = BeautifulSoup(page.content, 'html.parser')
                     lyrics_text = soup.find_all('div')[20].get_text()
