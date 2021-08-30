@@ -239,11 +239,12 @@ class SingleLyricsView(APIView):
             
             response={'lyrics':serializer.data}
             return Response(response,status=status.HTTP_200_OK )
-        except Lyrics.DoesNotExist:
-            flatTitle=title_slug.replace('-', '')
-            flatArtist= artist_slug.replace('-', '')
+        except:
+            flat_title=title_slug.replace('-', '')
+            flat_artist= artist_slug.replace('-', '')
             try:
-                page = requests.get(f"https://www.azlyrics.com/lyrics/{flatArtist}/{flatTitle}.html")
+                print(f'{flat_title}/{flat_artist}')
+                page = requests.get(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html")
 
             
                 if (page.status_code == 200):
