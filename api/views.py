@@ -214,7 +214,7 @@ class SingleLyricsView(APIView):
     def post(self, request,artist_slug,title_slug, *args, **kwargs ):
         title=request.data['title']
         artist = request.data['artist']
-        print(f'{title}')
+        print(f'{artist_slug}')
         
         lyrics=Lyrics()
         search_history=SearchHistory()
