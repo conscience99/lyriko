@@ -240,7 +240,7 @@ class SingleLyricsView(APIView):
             try:
                 page = requests.get(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html",headers=headers)
                 print(page.status_code)
-                if (page.status_code == 200):
+                ''' if (page.status_code == 200):
                     soup = BeautifulSoup(page.content, 'html.parser')
                     lyrics_text = soup.find_all('div')[20].get_text()
                     lyrics.title=title
@@ -254,7 +254,7 @@ class SingleLyricsView(APIView):
                     response={'lyrics':serializer.data}
                     return Response(response,status=status.HTTP_200_OK )
                 else:
-                    return Response({'error':'Not Found'})
+                    return Response({'error':'Not Found'}) '''
             except:
                 return Response({'error':'Not Found'})
 
