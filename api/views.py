@@ -236,7 +236,7 @@ class SingleLyricsView(APIView):
         except:
             flat_title=title_slug.replace('-', '')
             flat_artist= artist_slug.replace('-', '')
-            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'}
             try:
                 page = requests.get(f"https://www.azlyrics.com/lyrics/{flat_artist}/{flat_title}.html",headers=headers)
                 print(page.status_code)
