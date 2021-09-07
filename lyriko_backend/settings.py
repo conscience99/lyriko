@@ -175,6 +175,7 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/images/'
 
+FRONTEND_DIR = BASE_DIR / 'frontend'
 
 STATICFILES_DIRS = [
     #BASE_DIR / 'static',

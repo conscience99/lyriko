@@ -35,11 +35,18 @@ import random
 import time
 now = datetime.now()
 
+import lyricsgenius
+import json
+genius = lyricsgenius.Genius('JjE5WjsSgiHCW_pS7YWn3169wlT3Gz-0qKpf5xhTGvpS_pKt-eKQWmwyEfKPX1nh')
+
 
 class IndexView(View):
     def get(self, request):
-        template = get_template('index.html')
-        return render(request,'/index.html')
+        try:
+            with open(os.path.join(settings.FRONTEND_DIR, 'build', 'index.html')) as file:
+                return HttpResponse(file.read())
+        except:
+            return HttpResponse({'error':"404"})
 
 
 class SignupView(APIView):
@@ -234,13 +241,27 @@ class SingleLyricsView(APIView):
             response={'lyrics':serializer.data}
             return Response(response,status=status.HTTP_200_OK )
         except:
-            flat_title=title_slug.replace('-', ' ')
-            flat_artist= artist_slug.replace('-', ' ')
-            url = 'https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_track={flat_title}&q_artist={flat_artist}&apikey=a6941269e21e8c547c8c8b5bdffe5977'
+            _a = artist_slug.replace('-','')
+            _t = title_slug.replace('-','')
+            header = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
             try:
-                lyr = requests.get(url)
-                print(lyr)
-                
+                req = urllib.request.Request(f'https://www.azlyrics.com/lyrics/{_a}/{_t}.html',headers=header)
+                resp = urllib.request.urlopen(req)
+                respData = resp.read()
+                divs = re.findall(r'<div>(.*?)</div>',str(respData))
+                un_wanted = '<!-- Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->'
+                data = divs[0].replace(un_wanted,'')
+                new_lyrics = Lyrics()
+                new_lyrics.artist = artist
+                new_lyrics.title = title
+                new_lyrics.title_slug = title_slug
+                new_lyrics.artist_slug = artist_slug
+                new_lyrics.body = data
+                new_lyrics.save()
+                lyrics = Lyrics.objects.get(title_slug=title_slug, artist_slug=artist_slug)
+                serializer=serializers.LyricsSerializer(lyrics)
+                resp = {'lyrics':serializer.data}
+                return Response(resp)
             except:
                 return Response({'error':'Not Found'})
 
