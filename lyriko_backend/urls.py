@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     #path('',TemplateView.as_view(template_name='index.html')),
-    re_path(r'^',IndexView.as_view())
+    re_path(r'^$',include('front_end.urls'))
 ]
 
 urlpatterns +=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

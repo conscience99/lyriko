@@ -44,7 +44,7 @@ class IndexView(View):
     def get(self, request):
         try:
             with open(os.path.join(settings.FRONTEND_DIR, 'build', 'index.html')) as file:
-                return HttpResponse(file.read())
+                return HttpResponse(file.read(), )
         except:
             return HttpResponse({'error':"404"})
 
