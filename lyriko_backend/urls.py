@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.shortcuts import render
 from django.views import View
-from api.views import IndexView
+
 
 
 urlpatterns = [

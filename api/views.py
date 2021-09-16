@@ -40,13 +40,6 @@ import json
 genius = lyricsgenius.Genius('JjE5WjsSgiHCW_pS7YWn3169wlT3Gz-0qKpf5xhTGvpS_pKt-eKQWmwyEfKPX1nh')
 
 
-class IndexView(View):
-    def get(self, request):
-        try:
-            with open(os.path.join(settings.FRONTEND_DIR, 'build', 'index.html')) as file:
-                return HttpResponse(file.read(), )
-        except:
-            return HttpResponse({'error':"404"})
 
 
 class SignupView(APIView):

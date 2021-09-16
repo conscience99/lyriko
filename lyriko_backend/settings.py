@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'api',
-    'front_end'
+    'front_end',
     'apscheduler',
     
 ]
@@ -176,16 +176,15 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/images/'
 
-FRONTEND_DIR = os.path.join(BASE_DIR, 'frontend')
+
 
 STATICFILES_DIRS = [
-    #BASE_DIR / 'static',
-    BASE_DIR / 'frontend/build/static',
-    os.path.join(FRONTEND_DIR, 'build', 'static'),
+    BASE_DIR / '/static',
+    BASE_DIR / 'front_end/static',
 ]
 MEDIA_ROOT = BASE_DIR / 'static/images'
 STATIC_ROOT = BASE_DIR / 'static'
-WHITENOISE_ROOT = BASE_DIR / 'frontend/build/root',
+
 
 
 # Default primary key field type
