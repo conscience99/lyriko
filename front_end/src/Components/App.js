@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-/* */
-import logo from "./Components/Images/Logo/logo.png";
+import React from "react";
 import { useState, useEffect } from "react";
+import { render } from "react-dom";
 import UrlSlug from "url-slug";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Nav from "./Components/Nav/Nav.js";
-import Footer from "./Components/Footer/Footer.js";
-import RequestForm from "./Components/RequestForm/RequestForm.js";
-import Lyrics from "./Components/Lyrics/Lyrics.js";
-import Recent from "./Components/Recent/Recent.js";
-import Trending from "./Components/Trending/Trending.js";
-import AccountSettings from "./Components/Auth/Account/AccountSettings.js";
-import ForgotPassword from "./Components/Auth/Account/ForgotPassword.js";
-import Login from "./Components/Auth/Login/Login";
-import SignUp from "./Components/Auth/SignUp/SignUp";
-import History from "./Components/History/History.js";
-import Watchlist from "./Components/Watchlist/Watchlist.js";
-import Lyrics1 from "./Components/Lyrics/Lyrics1.js";
-import Verify from "./Components/Auth/Verify/Verify.js";
+import Nav from "./Nav/Nav.js";
+import Footer from "./Footer/Footer.js";
+import RequestForm from "./RequestForm/RequestForm.js";
+import Lyrics from "./Lyrics/Lyrics.js";
+import Recent from "./Recent/Recent.js";
+import Trending from "./Trending/Trending.js";
+import AccountSettings from "./Auth/Account/AccountSettings.js";
+import ForgotPassword from "./Auth/Account/ForgotPassword.js";
+
+import Login from "./Auth/Login/Login";
+import SignUp from "./Auth/SignUp/SignUp";
+import History from "./History/History.js";
+import Watchlist from "./Watchlist/Watchlist.js";
+import Lyrics1 from "./Lyrics/Lyrics1.js";
+import Verify from "./Auth/Verify/Verify.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import ChangePassword from "./Components/Auth/Account/ChangePassword.js";
+import ChangePassword from "./Auth/Account/ChangePassword.js";
 
 function App() {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
@@ -42,6 +42,7 @@ function App() {
   const [historyLoading, setHistoryLoading] = useState(false);
   const [watchlistLoading, setWatchlistLoading] = useState(false);
   const [trendingLoading, setTrendingLoading] = useState(false);
+  const logo = "https://i.ibb.co/4jqQHc2/logo.png";
 
   useEffect(() => {
     checkUserVerified();
@@ -462,3 +463,5 @@ function App() {
 }
 
 export default App;
+const rootDiv = document.getElementById("root");
+render(<App />, rootDiv);

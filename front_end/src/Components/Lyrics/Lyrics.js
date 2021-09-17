@@ -1,7 +1,6 @@
+import React from "react";
 import { useState } from "react";
-import "./Lyrics.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { ScaleLoader } from "react-spinners";
 
 import {

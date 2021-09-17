@@ -29,7 +29,11 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+#SECRET_KEY = os.environ.get("SECRET_KEY")
+if os.getcwd()=='/app':
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+elif os.getcwd() == '/home/cybernerd/workspace/lyriko/lyriko_backend':
+    SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,7 +80,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR,'api.email_templates'),
-            os.path.join(BASE_DIR,'frontend/build'),
+            os.path.join(BASE_DIR,'front_end/templates'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -105,15 +109,15 @@ if os.getcwd()=='/app':
         'default':dj_database_url.config(conn_max_age=600)
     }
 
-else:
+elif os.getcwd()=='/home/cybernerd/workspace/lyriko/lyriko_backend':
     DATABASES = {
         'default':{
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get("DATABASE_NAME"),
-            'USER': os.environ.get("DATABASE_USER"),
-            'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
-            'HOST': os.environ.get("DATABASE_HOST"),
-            'PORT':os.environ.get("DATABASE_PORT") ,
+            'NAME': env("DB_NAME"),
+            'USER': env("DB_USER"),
+            'PASSWORD': env("DB_PASS"),
+            'HOST': env("DBH"),
+            'PORT':env("DBP") ,
         }
     }
 
@@ -147,8 +151,14 @@ AUTH_PASSWORD_VALIDATORS = [
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
-EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
+if os.getcwd() == '/app':
+    EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
+else:
+    EMAIL_HOST_USER=env('E_HOST_USER')
+if os.getcwd() == '/app':
+    EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
+else:
+    EMAIL_HOST_PASSWORD=env('E_HOST_PASSWORD')
 EMAIL_USE_TLS=True
 
 # Internationalization

@@ -1,5 +1,5 @@
+import React from "react";
 import { useState, useEffect } from "react";
-import "./Lyrics1.css";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UrlSlug from "url-slug";

@@ -1,5 +1,5 @@
+import React from "react";
 import { useState } from "react";
-import "./Recent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import urlSlug from "url-slug";
 import { Link } from "react-router-dom";

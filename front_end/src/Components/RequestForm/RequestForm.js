@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Highlighter from "react-highlight-words";
 import {
@@ -8,7 +9,6 @@ import {
   faRandom,
 } from "@fortawesome/free-solid-svg-icons";
 
-import "./RequestForm.css";
 const RequestForm = ({ getLyrics, openMobileMenu, random }) => {
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");

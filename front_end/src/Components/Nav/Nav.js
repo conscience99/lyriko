@@ -1,8 +1,6 @@
 /* import { MenuItems } from "./MenuItems"; */
-import "./Nav.css";
-import { Link } from "react-router-dom";
-
 import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTimes,

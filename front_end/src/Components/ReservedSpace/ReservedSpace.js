@@ -1,5 +1,4 @@
-import "./ReservedSpace.css";
-
+import React from "react";
 const ReservedSpace = ({}) => {
   return (
     <div className="reserved-wrapper">

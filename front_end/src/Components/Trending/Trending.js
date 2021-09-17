@@ -1,6 +1,6 @@
+import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Trending.css";
 import { ScaleLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFire, faHeart, faMusic } from "@fortawesome/free-solid-svg-icons";
