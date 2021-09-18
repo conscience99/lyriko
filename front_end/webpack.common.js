@@ -7,8 +7,9 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "./static/front_end"),
-    filename: "[name].js",
+    filename: "[name].bundle.js",
   },
+  devtool: false,
   module: {
     rules: [
       {
@@ -61,15 +62,14 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("development"),
-      },
-    }),
-
-    new webpack.SourceMapDevToolPlugin({
-      filename: "[file].map",
+      "process.env.NODE_ENV": JSON.stringify("production"),
     }),
   ],
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
 };
 
 /* const path = require("path");

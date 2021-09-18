@@ -13,7 +13,7 @@ import Recent from "./Recent/Recent.js";
 import Trending from "./Trending/Trending.js";
 import AccountSettings from "./Auth/Account/AccountSettings.js";
 import ForgotPassword from "./Auth/Account/ForgotPassword.js";
-
+import { ToastProvider } from "react-toast-notifications";
 import Login from "./Auth/Login/Login";
 import SignUp from "./Auth/SignUp/SignUp";
 import History from "./History/History.js";
@@ -298,167 +298,171 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="App">
-        <div className="top">
-          <Nav
-            handleMobileMenuOpen={handleMobileMenuOpen}
-            openMobileMenu={openMobileMenu}
-            logo={logo}
-            is_athenticated={is_athenticated}
-            user={user}
-            logout={logoutHandler}
-          />
-        </div>
+    <ToastProvider>
+      <Router>
+        <div className="App">
+          <div className="top">
+            <Nav
+              handleMobileMenuOpen={handleMobileMenuOpen}
+              openMobileMenu={openMobileMenu}
+              logo={logo}
+              is_athenticated={is_athenticated}
+              user={user}
+              logout={logoutHandler}
+            />
+          </div>
 
-        <div className="middle">
-          <Route
-            path="/"
-            exact
-            render={(props) => (
-              <div className="middle-wrap">
-                {token["auth"] !== undefined ? (
-                  <div>
-                    {user["user"].is_verified === false ? (
-                      <div className="_alert_not_verified">
-                        <p>
-                          <FontAwesomeIcon icon={faExclamationTriangle} /> Your
-                          email is not yet verified.
-                          <Link to="/user/auth/verify">
-                            {" "}
-                            <span className="vlink"> Click to verify</span>
-                          </Link>
-                        </p>
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                ) : (
-                  ""
-                )}
-                <div className="request-form-wrapper">
-                  <RequestForm
-                    openMobileMenu={openMobileMenu}
-                    getLyrics={getLyrics}
-                    random={getRandomLyrics}
-                    token={token}
-                  />
-                </div>
-                <div className="main">
-                  <div className="m-l-wrapper">
-                    <Lyrics
-                      lyrics={lyrics}
-                      notFound={notFound}
+          <div className="middle">
+            <Route
+              path="/"
+              exact
+              render={(props) => (
+                <div className="middle-wrap">
+                  {token["auth"] !== undefined ? (
+                    <div>
+                      {user["user"].is_verified === false ? (
+                        <div className="_alert_not_verified">
+                          <p>
+                            <FontAwesomeIcon icon={faExclamationTriangle} />{" "}
+                            Your email is not yet verified.
+                            <Link to="/user/auth/verify">
+                              {" "}
+                              <span className="vlink"> Click to verify</span>
+                            </Link>
+                          </p>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  <div className="request-form-wrapper">
+                    <RequestForm
+                      openMobileMenu={openMobileMenu}
+                      getLyrics={getLyrics}
                       random={getRandomLyrics}
-                      removeWatchlist={removeWatchlist}
-                      addWatchlist={addWatchList}
-                      watchlisted={watchlisted}
-                      lyricsLoading={lyricsLoading}
+                      token={token}
                     />
                   </div>
-                  <div className="m-t-wrapper">
-                    <Trending
-                      getLyrics={getLyrics}
-                      trending={trending}
-                      loading={trendingLoading}
-                    />
-                  </div>
+                  <div className="main">
+                    <div className="m-l-wrapper">
+                      <Lyrics
+                        lyrics={lyrics}
+                        notFound={notFound}
+                        random={getRandomLyrics}
+                        removeWatchlist={removeWatchlist}
+                        addWatchlist={addWatchList}
+                        watchlisted={watchlisted}
+                        lyricsLoading={lyricsLoading}
+                      />
+                    </div>
+                    <div className="m-t-wrapper">
+                      <Trending
+                        getLyrics={getLyrics}
+                        trending={trending}
+                        loading={trendingLoading}
+                      />
+                    </div>
 
-                  <div className="m-r-wrapper">
-                    <Recent
-                      getLyrics={getLyrics}
-                      recent={recent}
-                      loading={loading}
-                    />
+                    <div className="m-r-wrapper">
+                      <Recent
+                        getLyrics={getLyrics}
+                        recent={recent}
+                        loading={loading}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          />
-          <Route
-            path="/signup"
-            exact
-            render={(props) => (
-              <SignUp
-                setToken={setToken}
-                setUser={setUser}
-                token={token}
-                handleVerify={handleVerify}
-              />
-            )}
-          />
-          <Route
-            path="/history"
-            exact
-            render={(props) => (
-              <History
-                history={history}
-                user={user}
-                getLyrics={getLyrics}
-                getHistory={getHistory}
-                loading={historyLoading}
-              />
-            )}
-          />
-          <Route
-            path="/watchlist"
-            exact
-            render={(props) => (
-              <Watchlist
-                watchlist={watchlist}
-                user={user}
-                getLyrics={getLyrics}
+              )}
+            />
+            <Route
+              path="/signup"
+              exact
+              render={(props) => (
+                <SignUp
+                  setToken={setToken}
+                  setUser={setUser}
+                  token={token}
+                  handleVerify={handleVerify}
+                />
+              )}
+            />
+            <Route
+              path="/history"
+              exact
+              render={(props) => (
+                <History
+                  history={history}
+                  user={user}
+                  getLyrics={getLyrics}
+                  getHistory={getHistory}
+                  loading={historyLoading}
+                />
+              )}
+            />
+            <Route
+              path="/watchlist"
+              exact
+              render={(props) => (
+                <Watchlist
+                  watchlist={watchlist}
+                  user={user}
+                  getLyrics={getLyrics}
+                  removeWatchlist={removeWatchlist}
+                  loading={watchlistLoading}
+                  getWatchlist={getWatchlist}
+                />
+              )}
+            />
+            <Route
+              path="/login"
+              exact
+              render={(props) => (
+                <Login setToken={setToken} setUser={setUser} />
+              )}
+            />
+            <Route path="/lyrics/:artist/:title">
+              <Lyrics1
+                lyrics={lyrics}
                 removeWatchlist={removeWatchlist}
-                loading={watchlistLoading}
-                getWatchlist={getWatchlist}
+                addWatchlist={addWatchList}
+                watchlisted={watchlisted}
+                token={token}
+                user={user}
               />
-            )}
-          />
-          <Route
-            path="/login"
-            exact
-            render={(props) => <Login setToken={setToken} setUser={setUser} />}
-          />
-          <Route path="/lyrics/:artist/:title">
-            <Lyrics1
-              lyrics={lyrics}
-              removeWatchlist={removeWatchlist}
-              addWatchlist={addWatchList}
-              watchlisted={watchlisted}
-              token={token}
-              user={user}
-            />
-          </Route>
-          <Route exact path="/user/auth/verify">
-            <Verify
-              user={user}
-              token={token}
-              is_authenticated={is_athenticated}
-              is_verified={is_verified}
-              requestUser={requestUser}
-            />
-          </Route>
+            </Route>
+            <Route exact path="/user/auth/verify">
+              <Verify
+                user={user}
+                token={token}
+                is_authenticated={is_athenticated}
+                is_verified={is_verified}
+                requestUser={requestUser}
+              />
+            </Route>
 
-          <Route path="/user/account" exact>
-            <AccountSettings
-              user={user}
-              token={token["auth"]}
-              setUser={setUser}
-            />
-          </Route>
-          <Route exact path="/user/account/change-password">
-            <ChangePassword token={token["auth"]} />
-          </Route>
-          <Route exact path="/auth/user/forgot-password">
-            <ForgotPassword token={token["auth"]} />
-          </Route>
+            <Route path="/user/account" exact>
+              <AccountSettings
+                user={user}
+                token={token["auth"]}
+                setUser={setUser}
+              />
+            </Route>
+            <Route exact path="/user/account/change-password">
+              <ChangePassword token={token["auth"]} />
+            </Route>
+            <Route exact path="/auth/user/forgot-password">
+              <ForgotPassword token={token["auth"]} />
+            </Route>
+          </div>
+          <div className="bottom">
+            <Footer logout={logoutHandler} user={user} logo={logo} />
+          </div>
         </div>
-        <div className="bottom">
-          <Footer logout={logoutHandler} user={user} logo={logo} />
-        </div>
-      </div>
-    </Router>
+      </Router>
+    </ToastProvider>
   );
 }
 
