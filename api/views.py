@@ -236,7 +236,15 @@ class SingleLyricsView(APIView):
         except:
             _a = artist_slug.replace('-','')
             _t = title_slug.replace('-','')
-            header = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
+            header = { 
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9", 
+                "Accept-Encoding": "gzip, deflate", 
+                "Accept-Language": "en-US,en;q=0.9", 
+                "Host": "www.azlyrics.com", 
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.99 Mobile DuckDuckGo/5 Safari/537.36", 
+                "X-Amzn-Trace-Id": "Root=1-61456c82-227ebd683713ca1b33a231c0", 
+                "X-Requested-With": "com.duckduckgo.mobile.android"
+                 }
             try:
                 req = urllib.request.Request(f'https://www.azlyrics.com/lyrics/{_a}/{_t}.html',headers=header)
                 resp = urllib.request.urlopen(req)
