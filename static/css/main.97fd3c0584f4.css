@@ -313,7 +313,7 @@ form input[type="checkbox"] {
     font-weight: 400;
     transition: 200ms;
     font-size: 16px;
-    border: none;
+    border: none !important;
     min-width: 19rem;
     width: 160%;
 
@@ -333,7 +333,7 @@ form input[type="checkbox"] {
   .form-artist {
     transition: 200ms;
     font-size: 16px;
-    border: none;
+    border: none !important;
 
     min-width: 19rem;
     width: 160%;
@@ -799,10 +799,10 @@ form input[type="checkbox"] {
     border: solid 1px rgb(53, 53, 53);
   }
   .nav-link {
-    display: none;
+    display: none !important;
   }
   .nav-account {
-    display: none;
+    display: none !important;
   }
   .nav-account-mobile {
     cursor: pointer;
