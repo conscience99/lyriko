@@ -38,7 +38,7 @@ elif os.getcwd() == '/home/cybernerd/workspace/lyriko/lyriko_backend':
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost', 'lyriko.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost', 'lyrik0.herokuapp.com']
 
 
 # Application definition
