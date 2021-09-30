@@ -28,7 +28,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.template import Context
 from django.http import HttpResponse, HttpResponseNotFound
 import os
-
+import re
+import urllib
 
 from datetime import datetime
 import random
@@ -243,7 +244,9 @@ class SingleLyricsView(APIView):
                 "Host": "www.azlyrics.com", 
                 "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.99 Mobile DuckDuckGo/5 Safari/537.36", 
                 "X-Amzn-Trace-Id": "Root=1-61456c82-227ebd683713ca1b33a231c0", 
-                "X-Requested-With": "com.duckduckgo.mobile.android"
+                "X-Requested-With": "com.duckduckgo.mobile.android",
+                "Referer":"https://www.google.co.ke/",
+
                  }
             try:
                 req = urllib.request.Request(f'https://www.azlyrics.com/lyrics/{_a}/{_t}.html',headers=header)
