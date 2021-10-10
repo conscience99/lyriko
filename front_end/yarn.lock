@@ -4088,6 +4088,13 @@
     "@babel/runtime" "^7.12.1"
     "tiny-warning" "^1.0.3"
 
+"mini-css-extract-plugin@^2.4.2":
+  "integrity" "sha512-ZmqShkn79D36uerdED+9qdo1ZYG8C1YsWvXu0UMJxurZnSdgz7gQKO2EGv8T55MhDqG3DYmGtizZNpM/UbTlcA=="
+  "resolved" "https://registry.npmjs.org/mini-css-extract-plugin/-/mini-css-extract-plugin-2.4.2.tgz"
+  "version" "2.4.2"
+  dependencies:
+    "schema-utils" "^3.1.0"
+
 "minimalistic-assert@^1.0.0":
   "integrity" "sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A=="
   "resolved" "https://registry.npmjs.org/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz"

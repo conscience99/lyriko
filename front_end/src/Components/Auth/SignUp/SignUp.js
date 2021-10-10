@@ -105,7 +105,7 @@ const SignUp = ({ setToken, setUser, token }) => {
                     });
                 } else {
                     addToast("Faild. Try again", {
-                        appearance: "success",
+                        appearance: "error",
                         autoDismiss: true,
                     });
                     return false;
@@ -188,17 +188,17 @@ const SignUp = ({ setToken, setUser, token }) => {
                 .then((resp) => {
                     if (resp["username"]) {
                         setUsernameError(true);
-                        setUsernameErrorMsg("Username already taken.");
+                        setUsernameErrorMsg("Username already taken");
                         flashInputs("username");
                     }
                     if (resp["email"]) {
                         setEmailError(true);
-                        setEmailErrorMsg("Email already taken.");
+                        setEmailErrorMsg("Email already taken");
                         flashInputs("email");
                     } else {
                         setToken("auth", resp["token"]);
                         setUser("user", resp["user"]);
-                        addToast("Succcess! Enter code to continue.", {
+                        addToast("One more step! Enter code to continue", {
                             appearance: "success",
                             autoDismiss: true,
                         });

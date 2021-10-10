@@ -80,6 +80,7 @@ const ForgotPassword = ({ token }) => {
                         setVerifying(true);
                     } else if (resp["error"] === "User not found.") {
                         flashInputs("email");
+                        setVErrorMsg("User doesn't exist");
                         return false;
                     } else {
                         addToast("Error occured", {
@@ -162,7 +163,7 @@ const ForgotPassword = ({ token }) => {
         <div className="signup-form">
             <form className="form">
                 <div className="header">
-                    <h3>Recover Account</h3>
+                    <h3>Account Recovery</h3>
                 </div>
                 <div className="name-inputs-wrapper">
                     {sendingCode ? (

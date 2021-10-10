@@ -47,6 +47,8 @@ class SignupView(APIView):
     now = datetime.now()
     def post(self, request, *args,**kwargs):
         user=User()
+        if User.objects.get(email=request.data['email']):
+            return Response({"email":"already taken"})
         serializer=serializers.UserSerializer(data=request.data)
         print(request.data)
         if serializer.is_valid():
