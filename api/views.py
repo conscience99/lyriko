@@ -36,9 +36,8 @@ import random
 import time
 now = datetime.now()
 
-import lyricsgenius
 import json
-genius = lyricsgenius.Genius('JjE5WjsSgiHCW_pS7YWn3169wlT3Gz-0qKpf5xhTGvpS_pKt-eKQWmwyEfKPX1nh')
+
 
 
 
@@ -47,56 +46,58 @@ class SignupView(APIView):
     now = datetime.now()
     def post(self, request, *args,**kwargs):
         user=User()
-        if User.objects.get(email=request.data['email']):
-            return Response({"email":"already taken"})
-        serializer=serializers.UserSerializer(data=request.data)
-        print(request.data)
-        if serializer.is_valid():
-            password=make_password(request.data['password'])
-            username=request.data['username']
-            user.username=username
-            user.first_name=request.data['first_name']
-            user.last_name=request.data['last_name']
-            user.email=request.data['email']
-            user.email_username=request.data['email']
-            user.password=password
-            user.is_verified = False
-            user.save()
-            new_user=User.objects.get(id=user.id)
-            token=Token.objects.create(user=new_user)
-            verification = VerificationCode()
-            code = random.randint(199999,999999)
-            verification.code=code
-            verification.user_id=new_user.id
-            verification._year = now.year
-            verification._month = now.month
-            verification._day = now.day
-            verification._hour = now.hour
-            verification._minute = now.minute
-            verification.save()
-            from_e = settings.EMAIL_HOST_USER
-            to=request.data['email']
-            html = get_template('api/code.html')
-            html_content = html.render({'username':new_user.username, 'code':code})
-            text = 'Hi {username}, \n Please use {code} to continue with Lyriko.'
-            subject = 'Confirm your email'
-            email = EmailMultiAlternatives(
-                subject,
-                text,
-                from_e,
-                [to]
+        try:
 
+            User.objects.get(email=request.data['email'])
+            return Response({"email":"already taken"})
+        except:
+
+            serializer=serializers.UserSerializer(data=request.data)
+            if serializer.is_valid():
+                password=make_password(request.data['password'])
+                username=request.data['username']
+                user.username=username
+                user.first_name=request.data['first_name']
+                user.last_name=request.data['last_name']
+                user.email=request.data['email']
+                user.email_username=request.data['email']
+                user.password=password
+                user.is_verified = False
+                user.save()
+                new_user=User.objects.get(id=user.id)
+                token=Token.objects.create(user=new_user)
+                verification = VerificationCode()
+                code = random.randint(199999,999999)
+                verification.code=code
+                verification.user_id=new_user.id
+                verification._year = now.year
+                verification._month = now.month
+                verification._day = now.day
+                verification._hour = now.hour
+                verification._minute = now.minute
+                verification.save()
+                from_e = settings.EMAIL_HOST_USER
+                to=request.data['email']
+                html = get_template('api/code.html')
+                html_content = html.render({'username':new_user.username, 'code':code})
+                text = 'Hi {username}, \n Please use {code} to continue with Lyriko.'
+                subject = 'Confirm your email'
+                email = EmailMultiAlternatives(
+                    subject,
+                    text,
+                    from_e,
+                    [to]
             )
-            email.attach_alternative(html_content, 'text/html')
-            try:
-                email.send()
-            except:
-                pass
-            token=Token.objects.get(user=user)
-            response={'token':token.key, 'user':serializer.data}
-            return Response(response)
-        else:
-            return Response(serializer.errors)
+                email.attach_alternative(html_content, 'text/html')
+                try:
+                    email.send()
+                except:
+                    pass
+                token=Token.objects.get(user=user)
+                response={'token':token.key, 'user':serializer.data}
+                return Response(response)
+            else:
+                return Response(serializer.errors)
 
 
 class SendCode(APIView):
@@ -111,7 +112,6 @@ class SendCode(APIView):
             v.delete()
         except:
             pass
-        print(user.username)
         verification = VerificationCode()
         code = random.randint(199999,999999)
         verification.code=code
@@ -490,7 +490,6 @@ class SigninView(APIView):
     def post(self, request, *args, **kwargs):
         password=request.data['password']
         username=request.data['username']
-        print(password, username)
         try:
             if '@' not in username:
                 user=User.objects.get(username=username)
