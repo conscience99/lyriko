@@ -283,7 +283,7 @@ class SearchHistoryView(APIView):
 
 class TrendingView(APIView):
     def get(self, request, *args, **kwargs):
-        lyrics=Lyrics.objects.order_by('-views')[:40]
+        lyrics=Lyrics.objects.order_by('-views')[0:35]
         serializer=serializers.LyricsSerializer(lyrics, many=True)
         response={"top":serializer.data}
         return Response(response)
