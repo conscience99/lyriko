@@ -2,10 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 import django.contrib.auth.validators
 from datetime import datetime
-
-from django.db.models.fields import SlugField
 now=datetime.now()
-from autoslug import AutoSlugField
 
 
 
