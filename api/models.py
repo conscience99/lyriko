@@ -2,7 +2,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 import django.contrib.auth.validators
 from datetime import datetime
+
+from django.db.models.fields import SlugField
 now=datetime.now()
+from autoslug import AutoSlugField
 
 
 
@@ -31,7 +34,7 @@ class Lyrics(models.Model):
     artist=models.CharField(max_length=50, )
     artist_slug=models.SlugField(null=True)
     title=models.CharField(max_length=50, )
-    title_slug=(models.SlugField(null=True))
+    title_slug=models.SlugField(null=True)
     body=models.TextField()
     views=models.IntegerField(default=0)
      

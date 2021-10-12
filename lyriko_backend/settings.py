@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'api',
     'front_end',
     'apscheduler',
+    'django_extensions',
     
 ]
 

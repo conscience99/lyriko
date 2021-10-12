@@ -1,12 +1,11 @@
 from django.contrib import admin
 
 from . import models
-
 class UserAdmin(admin.ModelAdmin):
     list_display=('id', 'first_name', 'last_name', 'username', 'last_login',)
-
 class LyricsAdmin(admin.ModelAdmin):
     list_display=('id', 'artist', 'title')
+    prepopulated_fields = {"title_slug": ("title",), "artist_slug": ("artist",)}
 
 class SaveListAdmin(admin.ModelAdmin):
     list_display=('lyrics_id', 'owner_username')
