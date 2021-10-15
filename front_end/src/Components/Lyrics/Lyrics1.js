@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UrlSlug from "url-slug";
-
+import { useToasts } from "react-toast-notifications";
 import { ScaleLoader } from "react-spinners";
 import {
     faCompactDisc,
@@ -14,6 +14,9 @@ import {
     faRandom,
     faBackward,
 } from "@fortawesome/free-solid-svg-icons";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const Lyrics1 = ({ user, token, addWatchlist, removeWatchlist }) => {
     const { artist, title } = useParams();
@@ -21,6 +24,7 @@ const Lyrics1 = ({ user, token, addWatchlist, removeWatchlist }) => {
     const [lyricsLoading, setLyricsLoading] = useState();
     const [notFound, setNotFound] = useState();
     const [watchlisted, setWatchlisted] = useState();
+    const { addToast } = useToasts();
 
     useEffect(() => {
         getLyrics(artist, title);
@@ -30,7 +34,117 @@ const Lyrics1 = ({ user, token, addWatchlist, removeWatchlist }) => {
             behavior: "smooth",
         });
     }, []);
+    function copy(text) {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text).then(
+            function () {
+                addToast(
+                    `Copied ${lyrics ? lyrics.title : ""} by ${
+                        lyrics ? lyrics.artist : ""
+                    } to clipbaord`,
+                    {
+                        appearance: "success",
+                        autoDismiss: true,
+                    }
+                );
+            },
+            function (err) {
+                addToast(`Something went wrong`, {
+                    appearance: "info",
+                    autoDismiss: true,
+                });
+            }
+        );
+    }
 
+    const copyTemp = `${lyrics ? lyrics.title : ""} by ${
+        lyrics ? lyrics.artist : ""
+    }\nsource:https://www.lyrik0.herokuapp.com \n\n\n${
+        lyrics ? lyrics.body : ""
+    }\n\n\nsource:https://www.lyrik0.herokuapp.com `;
+
+    //Generate pdf///
+
+    var docDefinition = {
+        watermark: {
+            text: "https://www.lyrik0.herokuapp.com",
+            color: "blue",
+            opacity: 0.1,
+            bold: true,
+            italics: false,
+            angle: 70,
+        },
+        footer: {
+            text: "https://www.lyrik0.herokuapp.com",
+            alignment: "right",
+        },
+
+        content: [
+            { text: `${lyrics ? lyrics.title : ""}`, style: "titleStyle" },
+            { text: "By", style: "byStyle" },
+            { text: `${lyrics ? lyrics.artist : ""}`, style: "artistStyle" },
+            {
+                text: `${"Visit https://www.lyrik0.herokuapp.com for more"}`,
+                style: "markStyle",
+            },
+            { text: " " },
+            { text: `${lyrics ? lyrics.body : ""}`, style: "bodyStyle" },
+        ],
+
+        styles: {
+            titleStyle: {
+                fontSize: 22,
+                bold: true,
+                alignment: "center",
+                color: "purple",
+            },
+            artistStyle: {
+                fontSize: 22,
+                bold: true,
+                alignment: "center",
+                color: "purple",
+            },
+            bodyStyle: {
+                alignment: "center",
+            },
+            markStyle: {
+                italic: true,
+                alignment: "center",
+                color: "purple",
+            },
+            byStyle: {
+                italic: true,
+                alignment: "center",
+                color: "purple",
+                fontSize: 15,
+            },
+        },
+    };
+    const GeneratePdf = () => {
+        addToast(
+            `Downloading ${lyrics ? lyrics.title : ""} by ${
+                lyrics ? lyrics.artist : ""
+            }`,
+            {
+                appearance: "info",
+                autoDismiss: true,
+            }
+        );
+        setTimeout(() => {
+            pdfMake
+                .createPdf(docDefinition)
+                .download(
+                    `${lyrics ? lyrics.artist : ""}_lyrik0.herokuapp.com_.pdf`
+                );
+            addToast(`Download Successful!`, {
+                appearance: "success",
+                autoDismiss: true,
+            });
+        }, 3000);
+    };
     const getLyrics = (artist, title) => {
         const artistSlug = UrlSlug(artist);
         const titleSlug = UrlSlug(title);
@@ -173,6 +287,9 @@ const Lyrics1 = ({ user, token, addWatchlist, removeWatchlist }) => {
                                                 <i>
                                                     <FontAwesomeIcon
                                                         icon={faFilePdf}
+                                                        onClick={() => {
+                                                            GeneratePdf();
+                                                        }}
                                                     />
                                                 </i>
                                             </div>
@@ -180,6 +297,9 @@ const Lyrics1 = ({ user, token, addWatchlist, removeWatchlist }) => {
                                                 <i>
                                                     <FontAwesomeIcon
                                                         icon={faCopy}
+                                                        onClick={() =>
+                                                            copy(copyTemp)
+                                                        }
                                                     />
                                                 </i>
                                             </div>

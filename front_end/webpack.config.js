@@ -12,6 +12,7 @@ module.exports = {
     },
 
     mode: "none",
+    devtool: false,
     module: {
         rules: [
             {
