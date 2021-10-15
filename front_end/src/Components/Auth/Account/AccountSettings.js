@@ -8,9 +8,6 @@ import {
     faKey,
     faUserAlt,
     faEnvelope,
-    faCheck,
-    faEdit,
-    faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import { ScaleLoader } from "react-spinners";
 const AccountSettings = ({ user, token, setUser }) => {

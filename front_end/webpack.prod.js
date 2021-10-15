@@ -10,6 +10,7 @@ module.exports = {
         path: path.resolve(__dirname, "./static/front_end"),
         filename: "[name].bundle.js",
     },
+
     mode: "production",
     devtool: false,
     module: {
