@@ -1066,11 +1066,12 @@ form input[type="checkbox"] {
     width: 100% !important;
     text-align: center !important;
 }
-.Lyrics1-footer-item {
+
+.lyrics-footer-item {
     font-size: 30px;
     color: rgb(0, 255, 213);
 }
-.Lyrics1-footer-item:active {
+.lyrics-footer-item:active {
     transform: scale(0.8) !important;
 }
 .lyrics-footer > .svg-inline--fa .fa-heart .fa-w-16 {

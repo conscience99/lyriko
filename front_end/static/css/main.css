@@ -1068,7 +1068,13 @@ form input[type="checkbox"] {
 }
 .Lyrics1-footer-item {
     font-size: 30px;
-    color: red;
+    color: rgb(0, 255, 213);
+}
+.Lyrics1-footer-item:active {
+    transform: scale(0.8) !important;
+}
+.lyrics-footer > .svg-inline--fa .fa-heart .fa-w-16 {
+    color: rgb(255, 0, 0);
 }
 .loader {
     text-align: center !important;
