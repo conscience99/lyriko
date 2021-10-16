@@ -12,28 +12,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var url_slug__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(43);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(44);
-/* harmony import */ var react_cookie__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(152);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(43);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(44);
+/* harmony import */ var react_cookie__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(162);
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(10);
 /* harmony import */ var _Nav_Nav_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(37);
-/* harmony import */ var _Footer_Footer_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(60);
-/* harmony import */ var _RequestForm_RequestForm_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(61);
-/* harmony import */ var _Lyrics_Lyrics_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(63);
-/* harmony import */ var _Recent_Recent_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(141);
-/* harmony import */ var _Trending_Trending_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(142);
-/* harmony import */ var _Auth_Account_AccountSettings_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(143);
-/* harmony import */ var _Auth_Account_ForgotPassword_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(144);
-/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(64);
-/* harmony import */ var _Auth_Login_Login__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(145);
-/* harmony import */ var _Auth_SignUp_SignUp__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(146);
-/* harmony import */ var _History_History_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(147);
-/* harmony import */ var _Watchlist_Watchlist_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(148);
-/* harmony import */ var _Lyrics_Lyrics1_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(149);
-/* harmony import */ var _Auth_Verify_Verify_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(150);
+/* harmony import */ var _Footer_Footer_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(62);
+/* harmony import */ var _RequestForm_RequestForm_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(63);
+/* harmony import */ var _Lyrics_Lyrics_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(65);
+/* harmony import */ var _Recent_Recent_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(146);
+/* harmony import */ var _Trending_Trending_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(147);
+/* harmony import */ var _Auth_Account_AccountSettings_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(148);
+/* harmony import */ var _Auth_Account_ForgotPassword_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(149);
+/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(66);
+/* harmony import */ var _Auth_Login_Login__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(150);
+/* harmony import */ var _Auth_SignUp_SignUp__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(151);
+/* harmony import */ var _History_History_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(152);
+/* harmony import */ var _Watchlist_Watchlist_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(153);
+/* harmony import */ var _Lyrics_Lyrics1_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(154);
+/* harmony import */ var _Auth_Verify_Verify_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(160);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(38);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(59);
-/* harmony import */ var _Auth_Account_ChangePassword_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(151);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(61);
+/* harmony import */ var _Auth_Account_ChangePassword_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(161);
+/* harmony import */ var react_document_meta__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(155);
+
 
 
 
@@ -66,8 +68,8 @@ function App() {
   const [trending, setTrending] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const [recent, setRecent] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const [notFound, setNotFound] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const [token, setToken, removeToken] = (0,react_cookie__WEBPACK_IMPORTED_MODULE_21__["default"])(["auth"]);
-  const [user, setUser, removeUser] = (0,react_cookie__WEBPACK_IMPORTED_MODULE_21__["default"])(["user"]);
+  const [token, setToken, removeToken] = (0,react_cookie__WEBPACK_IMPORTED_MODULE_22__["default"])(["auth"]);
+  const [user, setUser, removeUser] = (0,react_cookie__WEBPACK_IMPORTED_MODULE_22__["default"])(["user"]);
   const [is_athenticated, setIs_authenticated] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const [is_verified, setIs_verified] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [history, setHistory] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
@@ -88,6 +90,17 @@ function App() {
     getHistory();
     requestUser();
   }, [token["token"]]);
+  const meta = {
+    title: "Lyriko",
+    description: "Lyriko is a different kind of music lyrics website being built to get you closer to the lyrics. You can copy lyrics to clipboard, download lyrics pdf, add to your watchlist, check your history to see all lyrics you've searched.",
+    canonical: "https://www.lyrik0.herokuapp.com",
+    meta: {
+      charset: "utf-8",
+      name: {
+        keywords: "lyrics,song,songs,artist,artists,music,band,album,rock,blues,hiphop"
+      }
+    }
+  };
 
   const requestUser = () => {
     if (token["auth"] !== undefined) {
@@ -267,7 +280,7 @@ function App() {
   };
 
   const addWatchList = lyrics_id => {
-    if (is_athenticated) {
+    if (user["user"] !== undefined) {
       fetch("https://lyrik0.herokuapp.com/api/lyrics/savelist/add/", {
         method: "POST",
         headers: {
@@ -288,7 +301,7 @@ function App() {
   };
 
   const removeWatchlist = lyrics_id => {
-    if (is_athenticated) {
+    if (user["user"] !== undefined) {
       fetch("https://lyrik0.herokuapp.com/api/lyrics/savelist/remove/", {
         method: "POST",
         headers: {
@@ -312,7 +325,7 @@ function App() {
     setOpenMobileMenu(!openMobileMenu);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_toast_notifications__WEBPACK_IMPORTED_MODULE_12__.ToastProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_22__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_toast_notifications__WEBPACK_IMPORTED_MODULE_12__.ToastProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "top"
@@ -325,16 +338,16 @@ function App() {
     logout: logoutHandler
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "middle"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
     path: "/",
     exact: true,
-    render: props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    render: props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_document_meta__WEBPACK_IMPORTED_MODULE_21__["default"], meta, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "middle-wrap"
     }, token["auth"] !== undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, user["user"].is_verified === false ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "_alert_not_verified"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_19__.FontAwesomeIcon, {
-      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_24__.faExclamationTriangle
-    }), " ", "Your email is not yet verified.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_22__.Link, {
+      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_25__.faExclamationTriangle
+    }), " ", "Your email is not yet verified.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Link, {
       to: "/user/auth/verify"
     }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "vlink"
@@ -369,8 +382,8 @@ function App() {
       getLyrics: getLyrics,
       recent: recent,
       loading: loading
-    }))))
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
+    }))))))
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
     path: "/signup",
     exact: true,
     render: props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Auth_SignUp_SignUp__WEBPACK_IMPORTED_MODULE_14__["default"], {
@@ -379,7 +392,7 @@ function App() {
       token: token,
       handleVerify: handleVerify
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
     path: "/history",
     exact: true,
     render: props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_History_History_js__WEBPACK_IMPORTED_MODULE_15__["default"], {
@@ -389,7 +402,7 @@ function App() {
       getHistory: getHistory,
       loading: historyLoading
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
     path: "/watchlist",
     exact: true,
     render: props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Watchlist_Watchlist_js__WEBPACK_IMPORTED_MODULE_16__["default"], {
@@ -400,14 +413,14 @@ function App() {
       loading: watchlistLoading,
       getWatchlist: getWatchlist
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
     path: "/login",
     exact: true,
     render: props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Auth_Login_Login__WEBPACK_IMPORTED_MODULE_13__["default"], {
       setToken: setToken,
       setUser: setUser
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
     path: "/lyrics/:artist/:title"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Lyrics_Lyrics1_js__WEBPACK_IMPORTED_MODULE_17__["default"], {
     lyrics: lyrics,
@@ -416,7 +429,7 @@ function App() {
     watchlisted: watchlisted,
     token: token,
     user: user
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
     exact: true,
     path: "/user/auth/verify"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Auth_Verify_Verify_js__WEBPACK_IMPORTED_MODULE_18__["default"], {
@@ -425,19 +438,19 @@ function App() {
     is_authenticated: is_athenticated,
     is_verified: is_verified,
     requestUser: requestUser
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
     path: "/user/account",
     exact: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Auth_Account_AccountSettings_js__WEBPACK_IMPORTED_MODULE_10__["default"], {
     user: user,
     token: token["auth"],
     setUser: setUser
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
     exact: true,
     path: "/user/account/change-password"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Auth_Account_ChangePassword_js__WEBPACK_IMPORTED_MODULE_20__["default"], {
     token: token["auth"]
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
     exact: true,
     path: "/auth/user/forgot-password"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Auth_Account_ForgotPassword_js__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -457,7 +470,7 @@ const rootDiv = document.getElementById("root");
 
 /***/ }),
 
-/***/ 143:
+/***/ 148:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -467,9 +480,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(43);
-/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(64);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(59);
-/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(99);
+/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(66);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(61);
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(103);
 /* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_3__);
 
 
@@ -716,7 +729,7 @@ const AccountSettings = ({
 
 /***/ }),
 
-/***/ 151:
+/***/ 161:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -726,8 +739,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(43);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(59);
-/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(64);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(61);
+/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(66);
 
 
 
@@ -908,7 +921,7 @@ const ChangePassword = ({
 
 /***/ }),
 
-/***/ 144:
+/***/ 149:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -916,9 +929,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(64);
+/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(66);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(38);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(59);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(61);
 
 
 
@@ -946,6 +959,7 @@ const ForgotPassword = ({
   const {
     addToast
   } = (0,react_toast_notifications__WEBPACK_IMPORTED_MODULE_1__.useToasts)();
+  document.title = "Account Recovery - Lyriko";
 
   const flashInputs = className => {
     document.querySelector(`#${className}`).style.borderColor = "red";
@@ -1175,7 +1189,7 @@ const ForgotPassword = ({
 
 /***/ }),
 
-/***/ 145:
+/***/ 150:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1185,7 +1199,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(43);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(59);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(61);
 
 
 
@@ -1319,7 +1333,7 @@ const Login = ({
 
 /***/ }),
 
-/***/ 146:
+/***/ 151:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1329,8 +1343,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(43);
-/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(64);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(59);
+/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(66);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(61);
 
 
 
@@ -1709,7 +1723,7 @@ const SignUp = ({
 
 /***/ }),
 
-/***/ 150:
+/***/ 160:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1717,9 +1731,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(64);
+/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(66);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(38);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(59);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(61);
 
 
 
@@ -1856,7 +1870,7 @@ const Verify = ({
 
 /***/ }),
 
-/***/ 60:
+/***/ 62:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1866,7 +1880,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(43);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(59);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(61);
 
 
 
@@ -1955,7 +1969,7 @@ const Footer = ({
 
 /***/ }),
 
-/***/ 147:
+/***/ 152:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1964,10 +1978,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(59);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(61);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(43);
 /* harmony import */ var url_slug__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
-/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(99);
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(103);
 /* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_3__);
 
 
@@ -1983,10 +1997,10 @@ const History = ({
   user,
   getHistory
 }) => {
-  document.title = "History -Lyriko";
+  document.title = "History - Lyriko";
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     /*     if (!user["user"]) {
-      window.location.href = "/login";
+    window.location.href = "/login";
     } */
     window.scrollTo({
       top: 0
@@ -2019,7 +2033,7 @@ const History = ({
     className: "empty-text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     to: "/login"
-  }, "Login"), " to view your history."))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, history.length >= 1 ? history.map((lyrics, index) => {
+  }, "Login"), " ", "to view your history."))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, history.length >= 1 ? history.map((lyrics, index) => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "history-list-item",
       key: index
@@ -2047,7 +2061,7 @@ const History = ({
 
 /***/ }),
 
-/***/ 63:
+/***/ 65:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2055,14 +2069,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(64);
+/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(66);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(38);
-/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(99);
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(103);
 /* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(97);
+/* harmony import */ var pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(101);
 /* harmony import */ var pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var pdfmake_build_vfs_fonts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(98);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(59);
+/* harmony import */ var pdfmake_build_vfs_fonts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(102);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(61);
 
 
 
@@ -2087,11 +2101,6 @@ const Lyrics = ({
   } = (0,react_toast_notifications__WEBPACK_IMPORTED_MODULE_1__.useToasts)();
 
   function copy(text) {
-    if (!navigator.clipboard) {
-      fallbackCopyTextToClipboard(text);
-      return;
-    }
-
     navigator.clipboard.writeText(text).then(function () {
       addToast(`Copied ${lyrics ? lyrics.title : ""} by ${lyrics ? lyrics.artist : ""} to clipbaord`, {
         appearance: "success",
@@ -2174,7 +2183,7 @@ const Lyrics = ({
       autoDismiss: true
     });
     setTimeout(() => {
-      pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_3___default().createPdf(docDefinition).download(`${lyrics ? lyrics.artist : ""}_lyrik0.herokuapp.com_.pdf`);
+      pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_3___default().createPdf(docDefinition).download(`${lyrics ? lyrics.title : ""}_lyrik0.pdf`);
       addToast(`Download Successful!`, {
         appearance: "success",
         autoDismiss: true
@@ -2261,7 +2270,7 @@ const Lyrics = ({
 
 /***/ }),
 
-/***/ 149:
+/***/ 154:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2269,16 +2278,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(44);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(44);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
 /* harmony import */ var url_slug__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
-/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(64);
-/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(99);
-/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(59);
-/* harmony import */ var pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(97);
-/* harmony import */ var pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var pdfmake_build_vfs_fonts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(98);
+/* harmony import */ var react_toast_notifications__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(66);
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(103);
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_document_meta__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(155);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(61);
+/* harmony import */ var pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(101);
+/* harmony import */ var pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var pdfmake_build_vfs_fonts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(102);
 
 
 
@@ -2289,7 +2299,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_4___default().vfs) = pdfmake_build_vfs_fonts__WEBPACK_IMPORTED_MODULE_5__.pdfMake.vfs;
+
+(pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_5___default().vfs) = pdfmake_build_vfs_fonts__WEBPACK_IMPORTED_MODULE_6__.pdfMake.vfs;
 
 const Lyrics1 = ({
   user,
@@ -2300,7 +2311,7 @@ const Lyrics1 = ({
   const {
     artist,
     title
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)();
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useParams)();
   const [lyrics, setLyrics] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const [lyricsLoading, setLyricsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const [notFound, setNotFound] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
@@ -2405,7 +2416,7 @@ const Lyrics1 = ({
       autoDismiss: true
     });
     setTimeout(() => {
-      pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_4___default().createPdf(docDefinition).download(`${lyrics ? lyrics.artist : ""}_lyrik0.herokuapp.com_.pdf`);
+      pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_5___default().createPdf(docDefinition).download(`${lyrics ? lyrics.title : ""}_lyrik0.pdf`);
       addToast(`Download Successful!`, {
         appearance: "success",
         autoDismiss: true
@@ -2472,8 +2483,19 @@ const Lyrics1 = ({
     }
   };
 
+  const meta = {
+    title: `${lyricsLoading == false ? `${lyrics.title} by ${lyrics.artist} lyrics by Lyriko` : `Getting lyrics - Lyriko`}`,
+    description: "Lyriko is a different kind of music lyrics website being built to get you closer to the lyrics. You can copy lyrics to clipboard, download lyrics pdf, add to your watchlist, check your history to see all lyrics you've searched.",
+    canonical: `https://www.lyrik0.herokuapp.com/lyrics/${lyrics ? lyrics.artist_slug : ""}/${lyrics ? lyrics.title_slug : ""}`,
+    meta: {
+      charset: "utf-8",
+      name: {
+        keywords: `lyrics,song,songs,artist,artists,music,band,album,rock,blues,hiphop,${lyrics ? lyrics.title : ""},${lyrics ? lyrics.artist : ""}`
+      }
+    }
+  };
   checkWatchlist();
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_document_meta__WEBPACK_IMPORTED_MODULE_4__["default"], meta, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "Lyrics1-main"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "Lyrics1-wrapper"
@@ -2481,7 +2503,7 @@ const Lyrics1 = ({
     className: "Lyrics1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, lyricsLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "loader"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spinners__WEBPACK_IMPORTED_MODULE_7__.ScaleLoader, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spinners__WEBPACK_IMPORTED_MODULE_8__.ScaleLoader, {
     color: "#e9042a",
     loading: lyricsLoading,
     height: 55,
@@ -2519,18 +2541,18 @@ const Lyrics1 = ({
       watchlisted === "true" ? removeWatchlist(lyrics.id) : addWatchlist(lyrics.id);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faHeart
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faHeart
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "Lyrics1-footer-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faFilePdf,
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faFilePdf,
     onClick: () => {
       GeneratePdf();
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "Lyrics1-footer-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faCopy,
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faCopy,
     onClick: () => copy(copyTemp)
   }))))) : "")), notFound ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "not-found-wrapper"
@@ -2546,10 +2568,10 @@ const Lyrics1 = ({
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "random-icon"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faBackward
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faBackward
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "random-txt"
-  }, "Click me to get back"))))) : "")));
+  }, "Click me to get back"))))) : "")))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Lyrics1);
@@ -2566,7 +2588,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(43);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(59);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(61);
 /* import { MenuItems } from "./MenuItems"; */
 
 
@@ -2712,7 +2734,7 @@ const Nav = ({
 
 /***/ }),
 
-/***/ 141:
+/***/ 146:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2723,9 +2745,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
 /* harmony import */ var url_slug__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(43);
-/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(99);
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(103);
 /* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(59);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(61);
 
 
 
@@ -2795,7 +2817,7 @@ const Recent = ({
 
 /***/ }),
 
-/***/ 61:
+/***/ 63:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2804,9 +2826,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
-/* harmony import */ var react_highlight_words__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(62);
+/* harmony import */ var react_highlight_words__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(64);
 /* harmony import */ var react_highlight_words__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_highlight_words__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(59);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(61);
 
 
 
@@ -2974,7 +2996,7 @@ const RequestForm = ({
 
 /***/ }),
 
-/***/ 142:
+/***/ 147:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2983,10 +3005,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(43);
-/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(99);
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(103);
 /* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(59);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(61);
 
 
 
@@ -3055,7 +3077,7 @@ const Trending = ({
 
 /***/ }),
 
-/***/ 148:
+/***/ 153:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -3064,9 +3086,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(59);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(61);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(43);
-/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(99);
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(103);
 /* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_2__);
 
 
@@ -3090,6 +3112,17 @@ const Watchlist = ({
     top: 0,
     behavior: "smooth"
   });
+  const meta = {
+    title: "Lyriko",
+    description: "Lyriko is a different kind of music lyrics website being built to get you closer to the lyrics. You can copy lyrics to clipboard, download lyrics pdf, add to your watchlist, check your history to see all lyrics you've searched.",
+    canonical: "https://www.lyrik0.herokuapp.com",
+    meta: {
+      charset: "utf-8",
+      name: {
+        keywords: "lyrics,song,songs,artist,artists,music,band,album,rock,blues,hiphop"
+      }
+    }
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watchlist-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3116,7 +3149,7 @@ const Watchlist = ({
     className: "empty-text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: "/login"
-  }, "Login"), " to view your watchlist."))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, watchlist.length >= 1 ? watchlist.map((lyrics, index) => {
+  }, "Login"), " ", "to view your watchlist."))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, watchlist.length >= 1 ? watchlist.map((lyrics, index) => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "watchlist-list-item",
       key: index

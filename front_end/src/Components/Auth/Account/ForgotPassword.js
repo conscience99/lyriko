@@ -26,6 +26,7 @@ const ForgotPassword = ({ token }) => {
     const [vError, setVerror] = useState();
     const [vErrorMsg, setVErrorMsg] = useState();
     const { addToast } = useToasts();
+    document.title = "Account Recovery - Lyriko";
 
     const flashInputs = (className) => {
         document.querySelector(`#${className}`).style.borderColor = "red";

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UrlSlug from "url-slug";
 import { useToasts } from "react-toast-notifications";
 import { ScaleLoader } from "react-spinners";
+import DocumentMeta from "react-document-meta";
 import {
     faCompactDisc,
     faMusic,
@@ -34,6 +35,7 @@ const Lyrics1 = ({ user, token, addWatchlist, removeWatchlist }) => {
             behavior: "smooth",
         });
     }, []);
+
     function copy(text) {
         if (!navigator.clipboard) {
             fallbackCopyTextToClipboard(text);
@@ -136,9 +138,7 @@ const Lyrics1 = ({ user, token, addWatchlist, removeWatchlist }) => {
         setTimeout(() => {
             pdfMake
                 .createPdf(docDefinition)
-                .download(
-                    `${lyrics ? lyrics.artist : ""}_lyrik0.herokuapp.com_.pdf`
-                );
+                .download(`${lyrics ? lyrics.title : ""}_lyrik0.pdf`);
             addToast(`Download Successful!`, {
                 appearance: "success",
                 autoDismiss: true,
@@ -214,134 +214,167 @@ const Lyrics1 = ({ user, token, addWatchlist, removeWatchlist }) => {
             }
         }
     };
+
+    const meta = {
+        title: `${
+            lyricsLoading == false
+                ? `${lyrics.title} by ${lyrics.artist} lyrics by Lyriko`
+                : `Getting lyrics - Lyriko`
+        }`,
+        description:
+            "Lyriko is a different kind of music lyrics website being built to get you closer to the lyrics. You can copy lyrics to clipboard, download lyrics pdf, add to your watchlist, check your history to see all lyrics you've searched.",
+        canonical: `https://www.lyrik0.herokuapp.com/lyrics/${
+            lyrics ? lyrics.artist_slug : ""
+        }/${lyrics ? lyrics.title_slug : ""}`,
+        meta: {
+            charset: "utf-8",
+            name: {
+                keywords: `lyrics,song,songs,artist,artists,music,band,album,rock,blues,hiphop,${
+                    lyrics ? lyrics.title : ""
+                },${lyrics ? lyrics.artist : ""}`,
+            },
+        },
+    };
     checkWatchlist();
     return (
-        <div className="Lyrics1-main">
-            <div className="Lyrics1-wrapper">
-                <div className="Lyrics1">
-                    <div>
-                        {lyricsLoading ? (
-                            <div className="loader">
-                                <ScaleLoader
-                                    color={"#e9042a"}
-                                    loading={lyricsLoading}
-                                    height={55}
-                                    width={25}
-                                    radius={5}
-                                />
-                            </div>
-                        ) : (
+        <div>
+            <DocumentMeta {...meta}>
+                <div className="Lyrics1-main">
+                    <div className="Lyrics1-wrapper">
+                        <div className="Lyrics1">
                             <div>
-                                <div className="Lyrics1-title-wrapper">
-                                    <div className="Lyrics1-title">
-                                        <span>
-                                            {lyrics ? lyrics.title : ""}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="Lyrics1-artist-wrapper">
-                                    <div className="Lyrics1-artist">
-                                        <span>
-                                            {lyrics ? lyrics.artist : ""}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="l-line"></div>
-                                <div className="Lyrics1-text-wrapper">
-                                    <div className="Lyrics1-text">
-                                        <p className="l-txt">
-                                            {lyrics ? lyrics.body : ""}
-                                        </p>
-                                    </div>
-                                    <br />
-                                </div>
-                                <div className="l-line"></div>
-                                {lyrics ? (
-                                    <div className="Lyrics1-footer-wrapper">
-                                        <div className="Lyrics1-footer">
-                                            <div className="Lyrics1-footer-item">
-                                                <i
-                                                    style={{
-                                                        color:
-                                                            watchlisted ===
-                                                            "true"
-                                                                ? "red"
-                                                                : "white",
-                                                    }}
-                                                    onClick={() => {
-                                                        watchlisted === "true"
-                                                            ? removeWatchlist(
-                                                                  lyrics.id
-                                                              )
-                                                            : addWatchlist(
-                                                                  lyrics.id
-                                                              );
-                                                    }}
-                                                >
-                                                    <FontAwesomeIcon
-                                                        icon={faHeart}
-                                                    />
-                                                </i>
-                                            </div>
-                                            <div className="Lyrics1-footer-item">
-                                                <i>
-                                                    <FontAwesomeIcon
-                                                        icon={faFilePdf}
-                                                        onClick={() => {
-                                                            GeneratePdf();
-                                                        }}
-                                                    />
-                                                </i>
-                                            </div>
-                                            <div className="Lyrics1-footer-item">
-                                                <i>
-                                                    <FontAwesomeIcon
-                                                        icon={faCopy}
-                                                        onClick={() =>
-                                                            copy(copyTemp)
-                                                        }
-                                                    />
-                                                </i>
-                                            </div>
-                                        </div>
+                                {lyricsLoading ? (
+                                    <div className="loader">
+                                        <ScaleLoader
+                                            color={"#e9042a"}
+                                            loading={lyricsLoading}
+                                            height={55}
+                                            width={25}
+                                            radius={5}
+                                        />
                                     </div>
                                 ) : (
-                                    ""
+                                    <div>
+                                        <div className="Lyrics1-title-wrapper">
+                                            <div className="Lyrics1-title">
+                                                <span>
+                                                    {lyrics ? lyrics.title : ""}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="Lyrics1-artist-wrapper">
+                                            <div className="Lyrics1-artist">
+                                                <span>
+                                                    {lyrics
+                                                        ? lyrics.artist
+                                                        : ""}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="l-line"></div>
+                                        <div className="Lyrics1-text-wrapper">
+                                            <div className="Lyrics1-text">
+                                                <p className="l-txt">
+                                                    {lyrics ? lyrics.body : ""}
+                                                </p>
+                                            </div>
+                                            <br />
+                                        </div>
+                                        <div className="l-line"></div>
+                                        {lyrics ? (
+                                            <div className="Lyrics1-footer-wrapper">
+                                                <div className="Lyrics1-footer">
+                                                    <div className="Lyrics1-footer-item">
+                                                        <i
+                                                            style={{
+                                                                color:
+                                                                    watchlisted ===
+                                                                    "true"
+                                                                        ? "red"
+                                                                        : "white",
+                                                            }}
+                                                            onClick={() => {
+                                                                watchlisted ===
+                                                                "true"
+                                                                    ? removeWatchlist(
+                                                                          lyrics.id
+                                                                      )
+                                                                    : addWatchlist(
+                                                                          lyrics.id
+                                                                      );
+                                                            }}
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                icon={faHeart}
+                                                            />
+                                                        </i>
+                                                    </div>
+                                                    <div className="Lyrics1-footer-item">
+                                                        <i>
+                                                            <FontAwesomeIcon
+                                                                icon={faFilePdf}
+                                                                onClick={() => {
+                                                                    GeneratePdf();
+                                                                }}
+                                                            />
+                                                        </i>
+                                                    </div>
+                                                    <div className="Lyrics1-footer-item">
+                                                        <i>
+                                                            <FontAwesomeIcon
+                                                                icon={faCopy}
+                                                                onClick={() =>
+                                                                    copy(
+                                                                        copyTemp
+                                                                    )
+                                                                }
+                                                            />
+                                                        </i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            ""
+                                        )}
+                                    </div>
                                 )}
                             </div>
-                        )}
-                    </div>
 
-                    {notFound ? (
-                        <div className="not-found-wrapper">
-                            <div className="not-found">
-                                <div className="s-txt-wr">
-                                    <span>
-                                        Sorry, we could not get that lyrics :(
-                                    </span>
-                                </div>
-                                <div
-                                    className="shuffle-wrpper"
-                                    onClick={() => window.history.back()}
-                                >
-                                    <div className="shuffle">
-                                        <div className="random-icon">
-                                            <FontAwesomeIcon
-                                                icon={faBackward}
-                                            />
+                            {notFound ? (
+                                <div className="not-found-wrapper">
+                                    <div className="not-found">
+                                        <div className="s-txt-wr">
+                                            <span>
+                                                Sorry, we could not get that
+                                                lyrics :(
+                                            </span>
                                         </div>
-                                        <div className="random-txt">
-                                            Click me to get back
+                                        <div
+                                            className="shuffle-wrpper"
+                                            onClick={() =>
+                                                window.history.back()
+                                            }
+                                        >
+                                            <div className="shuffle">
+                                                <div className="random-icon">
+                                                    <FontAwesomeIcon
+                                                        icon={faBackward}
+                                                    />
+                                                </div>
+                                                <div className="random-txt">
+                                                    Click me to get back
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            ) : (
+                                ""
+                            )}
                         </div>
-                    ) : (
-                        ""
-                    )}
+                    </div>
                 </div>
-            </div>
+            </DocumentMeta>
         </div>
     );
 };

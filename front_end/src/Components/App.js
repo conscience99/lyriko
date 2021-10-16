@@ -23,6 +23,7 @@ import Verify from "./Auth/Verify/Verify.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import ChangePassword from "./Auth/Account/ChangePassword.js";
+import DocumentMeta from "react-document-meta";
 
 function App() {
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
@@ -53,6 +54,19 @@ function App() {
         getHistory();
         requestUser();
     }, [token["token"]]);
+    const meta = {
+        title: "Lyriko",
+        description:
+            "Lyriko is a different kind of music lyrics website being built to get you closer to the lyrics. You can copy lyrics to clipboard, download lyrics pdf, add to your watchlist, check your history to see all lyrics you've searched.",
+        canonical: "https://www.lyrik0.herokuapp.com",
+        meta: {
+            charset: "utf-8",
+            name: {
+                keywords:
+                    "lyrics,song,songs,artist,artists,music,band,album,rock,blues,hiphop",
+            },
+        },
+    };
 
     const requestUser = () => {
         if (token["auth"] !== undefined) {
@@ -253,7 +267,7 @@ function App() {
     };
 
     const addWatchList = (lyrics_id) => {
-        if (is_athenticated) {
+        if (user["user"] !== undefined) {
             fetch("https://lyrik0.herokuapp.com/api/lyrics/savelist/add/", {
                 method: "POST",
                 headers: {
@@ -274,7 +288,7 @@ function App() {
     };
 
     const removeWatchlist = (lyrics_id) => {
-        if (is_athenticated) {
+        if (user["user"] !== undefined) {
             fetch("https://lyrik0.herokuapp.com/api/lyrics/savelist/remove/", {
                 method: "POST",
                 headers: {
@@ -318,74 +332,91 @@ function App() {
                             path="/"
                             exact
                             render={(props) => (
-                                <div className="middle-wrap">
-                                    {token["auth"] !== undefined ? (
-                                        <div>
-                                            {user["user"].is_verified ===
-                                            false ? (
-                                                <div className="_alert_not_verified">
-                                                    <p>
-                                                        <FontAwesomeIcon
-                                                            icon={
-                                                                faExclamationTriangle
-                                                            }
-                                                        />{" "}
-                                                        Your email is not yet
-                                                        verified.
-                                                        <Link to="/user/auth/verify">
-                                                            {" "}
-                                                            <span className="vlink">
-                                                                {" "}
-                                                                Click to verify
-                                                            </span>
-                                                        </Link>
-                                                    </p>
+                                <div>
+                                    <DocumentMeta {...meta}>
+                                        <div className="middle-wrap">
+                                            {token["auth"] !== undefined ? (
+                                                <div>
+                                                    {user["user"]
+                                                        .is_verified ===
+                                                    false ? (
+                                                        <div className="_alert_not_verified">
+                                                            <p>
+                                                                <FontAwesomeIcon
+                                                                    icon={
+                                                                        faExclamationTriangle
+                                                                    }
+                                                                />{" "}
+                                                                Your email is
+                                                                not yet
+                                                                verified.
+                                                                <Link to="/user/auth/verify">
+                                                                    {" "}
+                                                                    <span className="vlink">
+                                                                        {" "}
+                                                                        Click to
+                                                                        verify
+                                                                    </span>
+                                                                </Link>
+                                                            </p>
+                                                        </div>
+                                                    ) : (
+                                                        ""
+                                                    )}
                                                 </div>
                                             ) : (
                                                 ""
                                             )}
-                                        </div>
-                                    ) : (
-                                        ""
-                                    )}
-                                    <div className="request-form-wrapper">
-                                        <RequestForm
-                                            openMobileMenu={openMobileMenu}
-                                            getLyrics={getLyrics}
-                                            random={getRandomLyrics}
-                                            token={token}
-                                        />
-                                    </div>
-                                    <div className="main">
-                                        <div className="m-l-wrapper">
-                                            <Lyrics
-                                                lyrics={lyrics}
-                                                notFound={notFound}
-                                                random={getRandomLyrics}
-                                                removeWatchlist={
-                                                    removeWatchlist
-                                                }
-                                                addWatchlist={addWatchList}
-                                                watchlisted={watchlisted}
-                                                lyricsLoading={lyricsLoading}
-                                            />
-                                        </div>
-                                        <div className="m-t-wrapper">
-                                            <Trending
-                                                getLyrics={getLyrics}
-                                                trending={trending}
-                                                loading={trendingLoading}
-                                            />
-                                        </div>
+                                            <div className="request-form-wrapper">
+                                                <RequestForm
+                                                    openMobileMenu={
+                                                        openMobileMenu
+                                                    }
+                                                    getLyrics={getLyrics}
+                                                    random={getRandomLyrics}
+                                                    token={token}
+                                                />
+                                            </div>
+                                            <div className="main">
+                                                <div className="m-l-wrapper">
+                                                    <Lyrics
+                                                        lyrics={lyrics}
+                                                        notFound={notFound}
+                                                        random={getRandomLyrics}
+                                                        removeWatchlist={
+                                                            removeWatchlist
+                                                        }
+                                                        addWatchlist={
+                                                            addWatchList
+                                                        }
+                                                        watchlisted={
+                                                            watchlisted
+                                                        }
+                                                        lyricsLoading={
+                                                            lyricsLoading
+                                                        }
+                                                    />
+                                                </div>
+                                                <div className="m-t-wrapper">
+                                                    <Trending
+                                                        getLyrics={getLyrics}
+                                                        trending={trending}
+                                                        loading={
+                                                            trendingLoading
+                                                        }
+                                                    />
+                                                </div>
 
-                                        <div className="m-r-wrapper">
-                                            <Recent
-                                                getLyrics={getLyrics}
-                                                recent={recent}
-                                                loading={loading}
-                                            />
+                                                <div className="m-r-wrapper">
+                                                    <Recent
+                                                        getLyrics={getLyrics}
+                                                        recent={recent}
+                                                        loading={loading}
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </DocumentMeta>
                                 </div>
                             )}
                         />

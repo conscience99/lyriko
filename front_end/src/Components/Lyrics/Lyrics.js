@@ -28,10 +28,6 @@ const Lyrics = ({
 }) => {
     const { addToast } = useToasts();
     function copy(text) {
-        if (!navigator.clipboard) {
-            fallbackCopyTextToClipboard(text);
-            return;
-        }
         navigator.clipboard.writeText(text).then(
             function () {
                 addToast(
@@ -128,9 +124,7 @@ const Lyrics = ({
         setTimeout(() => {
             pdfMake
                 .createPdf(docDefinition)
-                .download(
-                    `${lyrics ? lyrics.artist : ""}_lyrik0.herokuapp.com_.pdf`
-                );
+                .download(`${lyrics ? lyrics.title : ""}_lyrik0.pdf`);
             addToast(`Download Successful!`, {
                 appearance: "success",
                 autoDismiss: true,
