@@ -943,9 +943,7 @@ form input[type="checkbox"] {
 .lyrics-footer-item:active {
     transform: scale(0.8) !important;
 }
-.lyrics-footer > .svg-inline--fa .fa-heart .fa-w-16 {
-    color: rgb(255, 0, 0);
-}
+
 .loader {
     text-align: center !important;
     margin-top: 70px;
@@ -1073,9 +1071,7 @@ form input[type="checkbox"] {
 .Lyrics1-footer-item:active {
     transform: scale(0.8) !important;
 }
-.lyrics-footer > .svg-inline--fa .fa-heart .fa-w-16 {
-    color: rgb(255, 0, 0);
-}
+
 .loader {
     text-align: center !important;
     margin-top: 70px;
