@@ -16,7 +16,7 @@ const AccountSettings = ({ user, token, setUser }) => {
     const [lastName, setLastName] = useState();
     const [email, setEmail] = useState();
     const [username, setUsername] = useState();
-    const [editing, setEditing] = useState(true);
+    const [editing, setEditing] = useState(false);
     const [loading, setLoading] = useState(false);
     const [emailValid, setEmailValid] = useState(true);
     const [usernameValid, setUsernameValid] = useState(true);
