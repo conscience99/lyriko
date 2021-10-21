@@ -47,6 +47,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 a {
     text-decoration: none !important;
@@ -1571,3 +1572,126 @@ a:hover {
 
 /*-------------------WATCHLIST STYLES END--------------*/
 /*===================================================*/
+
+/*---------------ACCOUNT STYLES START----------------*/
+/*===================================================*/
+
+.account-set-container {
+    min-height: 76vh;
+    background: #00071a;
+    padding: 10px;
+    border-radius: 5px;
+}
+.header-container {
+    color: #7fa9e8;
+}
+
+.account-set-main {
+    background: #000a25;
+    border-radius: 5px;
+    width: 100%;
+    min-height: 30rem;
+}
+.top-right-acct {
+    display: inline;
+    float: right;
+    padding: 1rem 1rem 1rem 1rem;
+    font-weight: bold;
+}
+.edit-text {
+    color: rgb(173, 38, 38) !important;
+    cursor: pointer;
+}
+.save-text {
+    color: seagreen !important;
+    cursor: pointer;
+}
+.acc-loader {
+    display: inline;
+    height: 40px;
+    width: 40px;
+}
+
+.acct-title {
+    display: inline-flex !important;
+}
+.ava {
+    text-align: center;
+}
+.user--icon {
+    font-size: 180px;
+    color: rgb(173, 38, 38);
+}
+.user-icon-o {
+    display: block;
+    padding-top: 5rem;
+}
+.user--icon {
+    border: solid 6px rgb(62, 146, 185) !important;
+    border-radius: 55% !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.name {
+    margin-top: 1rem;
+    color: rgb(231, 231, 231) !important;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.details {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+}
+.email-details,
+.username-details {
+    color: rgb(231, 231, 231) !important;
+}
+
+.editing-name-wr {
+    width: 100%;
+    margin-top: 1rem;
+    display: inline-grid;
+    grid-template-columns: repeat(2, 50%);
+    gap: 0px !important;
+}
+.editing-name {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: #000a25 !important;
+    outline: none;
+    border: none;
+    color: white !important;
+}
+.i-1 {
+    padding-left: 1rem;
+}
+.e-i-w {
+    display: inline !important;
+}
+
+.e-input {
+    display: inline !important;
+}
+.editing-input {
+    max-width: 90%;
+    margin-left: 10px;
+    background: none !important;
+    width: 100%;
+    color: white !important;
+    outline: none !important;
+    border: none !important;
+}
+.editing {
+    border: solid 2px #00103a;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+#u-editing {
+    padding-bottom: 10px;
+}

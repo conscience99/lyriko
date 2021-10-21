@@ -502,7 +502,7 @@ const AccountSettings = ({
   const [lastName, setLastName] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const [email, setEmail] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const [username, setUsername] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const [editing, setEditing] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [editing, setEditing] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [emailValid, setEmailValid] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [usernameValid, setUsernameValid] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
@@ -555,12 +555,12 @@ const AccountSettings = ({
 
   const makeChanges = () => {
     if (email.length < 1) {
-      flashInputs("e-editing");
+      flashInputs("e-editing-in");
       return false;
     }
 
     if (!emailValid) {
-      flashInputs("e-editing");
+      flashInputs("e-editing-in");
       return false;
     }
 
@@ -588,12 +588,10 @@ const AccountSettings = ({
             username: username
           })
         }).then(res => res.json()).then(res => {
-          console.log(res);
-
           if (res["user"]) {
             setLoading(false);
             setUser("user", res["user"]);
-            addToast("Changes made!", {
+            addToast("Saved!", {
               appearance: "success",
               autoDismiss: true
             });
@@ -628,12 +626,14 @@ const AccountSettings = ({
     className: "acct-title"
   }, "Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "acc-loader"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spinners__WEBPACK_IMPORTED_MODULE_3__.ScaleLoader, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spinners__WEBPACK_IMPORTED_MODULE_3__.SyncLoader, {
+    size: "10px",
     color: "#e9042a",
     loading: loading
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "top-right-acct"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: editing ? "save-text" : "edit-text",
     onClick: () => {
       editing ? makeChanges() : setEditing(true);
     }
@@ -674,7 +674,7 @@ const AccountSettings = ({
     onChange: evt => setLastName(evt.target.value)
   }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "name"
-  }, fullName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, fullName))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "email-details"
@@ -682,12 +682,11 @@ const AccountSettings = ({
     id: "e-editing",
     className: "editing"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "e-i-w"
+    className: "e-input"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faEnvelope
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "e-input"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    id: "e-editing-in",
     className: "editing-input",
     type: "email",
     value: email,
@@ -701,12 +700,10 @@ const AccountSettings = ({
     id: "u-editing",
     className: "editing"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "e-i-w"
+    className: "u-input"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faUserAlt
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "u-input"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     className: "editing-input",
     type: "name",
     value: username,
@@ -2102,7 +2099,7 @@ const Lyrics = ({
 
   function copy(text) {
     navigator.clipboard.writeText(text).then(function () {
-      addToast(`Copied ${lyrics ? lyrics.title : ""} by ${lyrics ? lyrics.artist : ""} to clipbaord`, {
+      addToast(`Copied ${lyrics ? lyrics.title : ""} by ${lyrics ? lyrics.artist : ""} to clipboard`, {
         appearance: "success",
         autoDismiss: true
       });
@@ -2335,7 +2332,7 @@ const Lyrics1 = ({
     }
 
     navigator.clipboard.writeText(text).then(function () {
-      addToast(`Copied ${lyrics ? lyrics.title : ""} by ${lyrics ? lyrics.artist : ""} to clipbaord`, {
+      addToast(`Copied ${lyrics ? lyrics.title : ""} by ${lyrics ? lyrics.artist : ""} to clipboard`, {
         appearance: "success",
         autoDismiss: true
       });

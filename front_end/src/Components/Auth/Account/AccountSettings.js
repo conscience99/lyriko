@@ -9,14 +9,14 @@ import {
     faUserAlt,
     faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
-import { ScaleLoader } from "react-spinners";
+import { SyncLoader } from "react-spinners";
 const AccountSettings = ({ user, token, setUser }) => {
     const [fullName, setFullName] = useState();
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
     const [email, setEmail] = useState();
     const [username, setUsername] = useState();
-    const [editing, setEditing] = useState(false);
+    const [editing, setEditing] = useState(true);
     const [loading, setLoading] = useState(false);
     const [emailValid, setEmailValid] = useState(true);
     const [usernameValid, setUsernameValid] = useState(true);
@@ -74,11 +74,11 @@ const AccountSettings = ({ user, token, setUser }) => {
 
     const makeChanges = () => {
         if (email.length < 1) {
-            flashInputs("e-editing");
+            flashInputs("e-editing-in");
             return false;
         }
         if (!emailValid) {
-            flashInputs("e-editing");
+            flashInputs("e-editing-in");
             return false;
         }
         if (username.length < 1) {
@@ -106,11 +106,10 @@ const AccountSettings = ({ user, token, setUser }) => {
                 })
                     .then((res) => res.json())
                     .then((res) => {
-                        console.log(res);
                         if (res["user"]) {
                             setLoading(false);
                             setUser("user", res["user"]);
-                            addToast("Changes made!", {
+                            addToast("Saved!", {
                                 appearance: "success",
                                 autoDismiss: true,
                             });
@@ -141,10 +140,15 @@ const AccountSettings = ({ user, token, setUser }) => {
                         {" "}
                         <h1 className="acct-title">Account</h1>
                         <div className="acc-loader">
-                            <ScaleLoader color={"#e9042a"} loading={loading} />
+                            <SyncLoader
+                                size="10px"
+                                color={"#e9042a"}
+                                loading={loading}
+                            />
                         </div>
                         <div className="top-right-acct">
                             <span
+                                className={editing ? "save-text" : "edit-text"}
                                 onClick={() => {
                                     editing ? makeChanges() : setEditing(true);
                                 }}
@@ -198,7 +202,7 @@ const AccountSettings = ({ user, token, setUser }) => {
                                             </div>
                                         ) : (
                                             <div className="name">
-                                                {fullName}
+                                                <h4>{fullName}</h4>
                                             </div>
                                         )}
                                     </div>
@@ -210,13 +214,12 @@ const AccountSettings = ({ user, token, setUser }) => {
                                 <div className="email-details">
                                     {editing ? (
                                         <div id="e-editing" className="editing">
-                                            <div className="e-i-w">
+                                            <div className="e-input">
                                                 <FontAwesomeIcon
                                                     icon={faEnvelope}
                                                 />
-                                            </div>
-                                            <div className="e-input">
                                                 <input
+                                                    id="e-editing-in"
                                                     className="editing-input"
                                                     type="email"
                                                     value={email}
@@ -243,12 +246,10 @@ const AccountSettings = ({ user, token, setUser }) => {
                                 <div className="username-details">
                                     {editing ? (
                                         <div id="u-editing" className="editing">
-                                            <div className="e-i-w">
+                                            <div className="u-input">
                                                 <FontAwesomeIcon
                                                     icon={faUserAlt}
                                                 />
-                                            </div>
-                                            <div className="u-input">
                                                 <input
                                                     className="editing-input"
                                                     type="name"

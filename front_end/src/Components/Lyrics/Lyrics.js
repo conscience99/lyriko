@@ -33,7 +33,7 @@ const Lyrics = ({
                 addToast(
                     `Copied ${lyrics ? lyrics.title : ""} by ${
                         lyrics ? lyrics.artist : ""
-                    } to clipbaord`,
+                    } to clipboard`,
                     {
                         appearance: "success",
                         autoDismiss: true,
