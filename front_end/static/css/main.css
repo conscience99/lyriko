@@ -1580,7 +1580,6 @@ a:hover {
     background: #00071a;
     padding: 10px;
     border-radius: 5px;
-    overflow: hidden !important;
 }
 .header-container {
     color: #7fa9e8;
@@ -1591,6 +1590,7 @@ a:hover {
     border-radius: 5px;
     width: 100%;
     min-height: 30rem;
+    overflow-x: hidden !important;
 }
 .top-right-acct {
     display: inline;
