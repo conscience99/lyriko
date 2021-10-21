@@ -24,6 +24,9 @@ const AccountSettings = ({ user, token, setUser }) => {
 
     useEffect(() => {
         autoSet();
+        if (!token) {
+            window.location.href = "/login";
+        }
     }, []);
     const autoSet = () => {
         if (user["user"]) {

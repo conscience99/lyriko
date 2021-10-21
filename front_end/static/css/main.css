@@ -66,6 +66,7 @@ a {
 body {
     font-family: Roboto, Verdana, sans-serif;
     background: #00020d !important;
+    overflow-x: hidden;
 }
 
 .btn {
