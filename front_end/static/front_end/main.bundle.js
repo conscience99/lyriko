@@ -502,7 +502,7 @@ const AccountSettings = ({
   const [lastName, setLastName] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const [email, setEmail] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const [username, setUsername] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const [editing, setEditing] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [editing, setEditing] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [emailValid, setEmailValid] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [usernameValid, setUsernameValid] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
@@ -511,6 +511,10 @@ const AccountSettings = ({
   } = (0,react_toast_notifications__WEBPACK_IMPORTED_MODULE_2__.useToasts)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     autoSet();
+
+    if (!token) {
+      window.location.href = "/login";
+    }
   }, []);
 
   const autoSet = () => {

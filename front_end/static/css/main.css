@@ -1649,27 +1649,6 @@ a:hover {
     color: rgb(231, 231, 231) !important;
 }
 
-.editing-name-wr {
-    width: 100%;
-    margin-top: 1rem;
-    display: inline-grid;
-    grid-template-columns: repeat(2, 50%);
-    gap: 0px !important;
-}
-.editing-name {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    font-weight: 500;
-    font-size: 20px;
-    background-color: #000a25 !important;
-    outline: none;
-    border: none;
-    color: white !important;
-}
-.i-1 {
-    padding-left: 1rem;
-}
 .e-i-w {
     display: inline !important;
 }
@@ -1694,5 +1673,27 @@ a:hover {
     border-radius: 5px;
 }
 #u-editing {
+    padding-bottom: 10px;
+}
+
+.editing-name-wr {
+    margin-left: 1rem;
+    text-align: left !important;
+    margin-right: 1rem;
+    margin-top: 3rem;
+}
+.editing-name {
+    background: none !important;
+    outline: none !important;
+    border: none !important;
+    color: white !important;
+}
+.i-1,
+.i-2 {
+    border: solid 2px #00103a;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
     padding-bottom: 10px;
 }
