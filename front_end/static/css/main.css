@@ -47,7 +47,6 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow-x: hidden;
 }
 a {
     text-decoration: none !important;
@@ -1581,6 +1580,7 @@ a:hover {
     background: #00071a;
     padding: 10px;
     border-radius: 5px;
+    overflow: hidden !important;
 }
 .header-container {
     color: #7fa9e8;
