@@ -308,6 +308,28 @@ function App() {
         }
     };
 
+    ////
+    const removeHistory = (lyrics_id) => {
+        if (user["user"] !== undefined) {
+            fetch("https://lyrik0.herokuapp.com/api/remove-history/", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                    Authorization: `Token ${token["auth"]}`,
+                },
+                body: JSON.stringify({ lyrics_id: lyrics_id }),
+            })
+                .then((res) => res.json())
+                .then((res) => {
+                    if (!res.Error) {
+                        setWatchlist(res.save_list);
+                    }
+                });
+        } else {
+            window.location.href = "/login";
+        }
+    };
+
     const handleMobileMenuOpen = () => {
         setOpenMobileMenu(!openMobileMenu);
     };

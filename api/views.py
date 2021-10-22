@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework import response
 from . import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -280,6 +281,19 @@ class SearchHistoryView(APIView):
         serializer=serializers.SearchHistorySerializer(search_history_items, many=True)
         response={"search_history":serializer.data}
         return Response(response,status=status.HTTP_200_OK)
+
+class DeleteHistory(APIView):
+    permission_classes=[IsAuthenticated]
+    def post(self, request, *args, **kwargs):
+        searcher_username = request.user.username
+        history_item_id = request.data['id']
+        SearchHistory.objects.get(searcher_username=searcher_username, id=history_item_id).delete()
+        new_list = SearchHistory.objects.filter(searcher_username=searcher_username).order_by('-moment').all()
+        serializer = serializers.SearchHistorySerializer(new_list, many=True)
+        resp = {"search_history":serializer.data}
+        return Response(resp)
+        
+        
 
 class TrendingView(APIView):
     def get(self, request, *args, **kwargs):

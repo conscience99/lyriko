@@ -18,6 +18,7 @@ urlpatterns = [
     path("checksavelist/", views.CheckSaveList.as_view()),
     path("trending", views.TrendingView.as_view()),
     path('search-history/', views.SearchHistoryView.as_view()),
+    path("remove-history/", views.DeleteHistory.as_view()),
     path("random/", views.RandomView.as_view()),
     path("recent", views.RecentView.as_view()),
     path("suggest", views.SuggestionView.as_view()),
