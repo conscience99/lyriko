@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import urlSlug from "url-slug";
 import { ScaleLoader } from "react-spinners";
 
-const History = ({ history, loading, user, getHistory }) => {
+const History = ({ history, loading, user, getHistory, removeHistory }) => {
     document.title = "History - Lyriko";
     useEffect(() => {
         /*     if (!user["user"]) {
@@ -96,6 +96,11 @@ const History = ({ history, loading, user, getHistory }) => {
                                                                                 icon={
                                                                                     faTrashAlt
                                                                                 }
+                                                                                onClick={() => {
+                                                                                    removeHistory(
+                                                                                        lyrics.id
+                                                                                    );
+                                                                                }}
                                                                             />
                                                                         </div>
                                                                     </div>

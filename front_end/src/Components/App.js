@@ -322,7 +322,7 @@ function App() {
                 .then((res) => res.json())
                 .then((res) => {
                     if (!res.Error) {
-                        setWatchlist(res.save_list);
+                        setHistory(res.search_history);
                     }
                 });
         } else {
@@ -463,6 +463,7 @@ function App() {
                                     user={user}
                                     getLyrics={getLyrics}
                                     getHistory={getHistory}
+                                    removeHistory={removeHistory}
                                     loading={historyLoading}
                                 />
                             )}

@@ -335,7 +335,7 @@ function App() {
         })
       }).then(res => res.json()).then(res => {
         if (!res.Error) {
-          setWatchlist(res.save_list);
+          setHistory(res.search_history);
         }
       });
     } else {
@@ -422,6 +422,7 @@ function App() {
       user: user,
       getLyrics: getLyrics,
       getHistory: getHistory,
+      removeHistory: removeHistory,
       loading: historyLoading
     })
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
@@ -2018,7 +2019,8 @@ const History = ({
   history,
   loading,
   user,
-  getHistory
+  getHistory,
+  removeHistory
 }) => {
   document.title = "History - Lyriko";
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -2073,7 +2075,10 @@ const History = ({
       className: "icon-wr"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
       className: "de-ic",
-      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faTrashAlt
+      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faTrashAlt,
+      onClick: () => {
+        removeHistory(lyrics.id);
+      }
     })));
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "empty-text"

@@ -287,11 +287,14 @@ class DeleteHistory(APIView):
     def post(self, request, *args, **kwargs):
         searcher_username = request.user.username
         history_item_id = request.data['id']
-        SearchHistory.objects.get(searcher_username=searcher_username, id=history_item_id).delete()
-        new_list = SearchHistory.objects.filter(searcher_username=searcher_username).order_by('-moment').all()
-        serializer = serializers.SearchHistorySerializer(new_list, many=True)
-        resp = {"search_history":serializer.data}
-        return Response(resp)
+        try:
+            SearchHistory.objects.get(searcher_username=searcher_username, id=history_item_id).delete()
+            new_list = SearchHistory.objects.filter(searcher_username=searcher_username).order_by('-moment').all()
+            serializer = serializers.SearchHistorySerializer(new_list, many=True)
+            resp = {"search_history":serializer.data}
+            return Response(resp)
+        except:
+            return Response({"Error":"Something went wrong"})
         
         
 
