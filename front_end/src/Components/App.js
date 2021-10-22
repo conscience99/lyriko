@@ -321,7 +321,7 @@ function App() {
             })
                 .then((res) => res.json())
                 .then((res) => {
-                    if (!res.msg == "OK") {
+                    if (res.msg == "OK") {
                         getHistory();
                     } else {
                         return false;

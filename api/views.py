@@ -292,7 +292,7 @@ class DeleteHistory(APIView):
             
             return Response({"msg":"OK"})
         except:
-            return Response({"msg":"Error"})
+            return Response({"msg":"Something went wrong"})
         
         
 
