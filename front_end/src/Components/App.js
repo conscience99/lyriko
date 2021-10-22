@@ -317,7 +317,7 @@ function App() {
                     "Content-type": "application/json",
                     Authorization: `Token ${token["auth"]}`,
                 },
-                body: JSON.stringify({ lyrics_id: lyrics_id }),
+                body: JSON.stringify({ id: lyrics_id }),
             })
                 .then((res) => res.json())
                 .then((res) => {

@@ -331,7 +331,7 @@ function App() {
           Authorization: `Token ${token["auth"]}`
         },
         body: JSON.stringify({
-          lyrics_id: lyrics_id
+          id: lyrics_id
         })
       }).then(res => res.json()).then(res => {
         if (!res.Error) {
