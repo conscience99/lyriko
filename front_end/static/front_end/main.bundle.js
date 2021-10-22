@@ -334,8 +334,10 @@ function App() {
           id: lyrics_id
         })
       }).then(res => res.json()).then(res => {
-        if (!res.Error) {
-          setHistory(res.search_history);
+        if (!res.msg == "OK") {
+          getHistory();
+        } else {
+          return false;
         }
       });
     } else {
@@ -2077,7 +2079,7 @@ const History = ({
       className: "de-ic",
       icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faTrashAlt,
       onClick: () => {
-        removeHistory(lyrics.id);
+        removeHistory(lyrics.pk);
       }
     })));
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

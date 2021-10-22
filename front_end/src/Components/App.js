@@ -321,8 +321,10 @@ function App() {
             })
                 .then((res) => res.json())
                 .then((res) => {
-                    if (!res.Error) {
-                        setHistory(res.search_history);
+                    if (!res.msg == "OK") {
+                        getHistory();
+                    } else {
+                        return false;
                     }
                 });
         } else {

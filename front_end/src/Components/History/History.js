@@ -98,7 +98,7 @@ const History = ({ history, loading, user, getHistory, removeHistory }) => {
                                                                                 }
                                                                                 onClick={() => {
                                                                                     removeHistory(
-                                                                                        lyrics.id
+                                                                                        lyrics.pk
                                                                                     );
                                                                                 }}
                                                                             />
