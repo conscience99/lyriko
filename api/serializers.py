@@ -24,4 +24,4 @@ class SearchHistorySerializer(serializers.ModelSerializer):
     moment=serializers.DateTimeField(format='%b %d, %I:%M %P')
     class Meta:
         model=models.SearchHistory
-        fields=('title', 'artist', 'moment')
+        fields=('id','title', 'artist', 'moment')
