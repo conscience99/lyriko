@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import response
+from rest_framework.serializers import Serializer
 from . import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -563,6 +564,14 @@ class DeclineSubmitLyrics(APIView):
         item = SubmitLyrics.objects.get(id=request.data['id'])
         item.delete()
         return Response({"msg":"OK"})
+
+
+class RelatedView(APIView):
+    def get(self, request):
+        lyrics = Lyrics.objects.filter(artist=request.data['artist'])[0:10]
+        serializer = serializers.LyricsSerializer(data=lyrics)
+        resp = ({"related":serializer.data})
+        return Response(resp)
         
         
 
