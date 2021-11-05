@@ -548,14 +548,14 @@ class ApproveSubmitLyrics(APIView):
 class SubmitLyricsListView(APIView):
     def get(self, request, *args, **kwargs):
         sub = SubmitLyrics.objects.all()
-        serializer = serializers.SubmitLyricsSerializer(data=sub)
+        serializer = serializers.SubmitLyricsSerializer(sub)
         res = {"submit_lyrics_view":serializer.data}
         return Response(res)
 
 class SubmitLyricsView(APIView):
     def get(self, request, *args, **kwargs):
         item = SubmitLyrics.objects.get(id=request.data['id'])
-        serializer = serializers.SubmitLyricsSerializer(data=item)
+        serializer = serializers.SubmitLyricsSerializer(item)
         res = {"submit_lyrics_item":serializer.data}
         return Response(res)
 
@@ -569,9 +569,9 @@ class DeclineSubmitLyrics(APIView):
 class RelatedView(APIView):
     def post(self, request,  *args, **kwargs):
         lyrics = Lyrics.objects.filter(artist=request.data['artist'])[0:10]
-        serializer = serializers.LyricsSerializer(data=lyrics)
-        resp = ({"related":serializer.data})
-        return Response(resp)
+        serializer=serializers.LyricsSerializer(lyrics, many=True)
+        response={"top":serializer.data}
+        return Response(response)
         
         
 
