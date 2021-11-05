@@ -568,7 +568,7 @@ class DeclineSubmitLyrics(APIView):
 
 class RelatedView(APIView):
     def post(self, request,  *args, **kwargs):
-        lyrics = Lyrics.objects.filter(artist=request.data['artist'])[0:10]
+        lyrics = Lyrics.objects.filter(artist_slug=request.data['artist'])[0:10]
         serializer=serializers.LyricsSerializer(lyrics, many=True)
         response={"top":serializer.data}
         return Response(response)
