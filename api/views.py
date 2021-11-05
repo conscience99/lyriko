@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.views import View
 from rest_framework import status
-from . models import SaveList, User, Lyrics, SearchHistory, VerificationCode
+from . models import SaveList, User, Lyrics, SearchHistory, VerificationCode, SubmitLyrics
 from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.hashers import make_password, check_password
@@ -521,6 +521,55 @@ class SigninView(APIView):
         else:
             return Response({'error':'Incorrect password'})
 
+class SubmitLyrics(APIView):
+    def post(self, request, *args, **kwargs):
+        serializer = serializers.SubmitLyricsSerializer(data=request.data)
+        submitlyrics = SubmitLyrics()
+        if serializer.is_valid:
+            submitlyrics.title = request.data['title']
+            submitlyrics.artist = request.data['artist']
+            submitlyrics.body = request.data['body']
+            submitlyrics.save()
+            response = {"msg":"OK"}
+            return Response(response)
+        else:
+            return Response({serializers.errors})
+
+class ApproveSubmitLyrics(APIView):
+    def post(self, request, *args, **kwargs):
+        lyrics = Lyrics()
+        lyrics.artist = request.data['artist']
+        lyrics.title = request.data['title']
+        lyrics.body = request.data['body']
+        lyrics.save()
+        return Response({"msg":"OK"})
+
+class SubmitLyricsListView(APIView):
+    def get(self, request, *args, **kwargs):
+        sub = SubmitLyrics.objects.all()
+        serializer = serializers.SubmitLyricsSerializer(data=sub)
+        res = {"submit_lyrics_view":serializer.data}
+        return Response(res)
+
+class SubmitLyricsView(APIView):
+    def get(self, request, *args, **kwargs):
+        item = SubmitLyrics.objects.get(id=request.data['id'])
+        serializer = serializers.SubmitLyricsSerializer(data=item)
+        res = {"submit_lyrics_item":serializer.data}
+        return Response(res)
+
+class DeclineSubmitLyrics(APIView):
+    def post(self, request, *args, **kwargs):
+        item = SubmitLyrics.objects.get(id=request.data['id'])
+        item.delete()
+        return Response({"msg":"OK"})
+        
+        
+
+
+        
+
+
 
 
         
@@ -546,3 +595,6 @@ class SigninView(APIView):
                     serializer=serializers.LyricsSerializer(lyrics_item, many=False)
                     response={'lyrics':serializer.data}
                     return Response(response,status=status.HTTP_200_OK ) """
+
+
+

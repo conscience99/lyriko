@@ -1,3 +1,4 @@
+from django.db.models import fields
 from rest_framework import serializers
 
 from . import models
@@ -25,3 +26,8 @@ class SearchHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model=models.SearchHistory
         fields=('pk','title', 'artist', 'moment')
+
+class SubmitLyricsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.SubmitLyrics
+        fields=('title', 'artist', 'body')

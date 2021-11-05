@@ -20,7 +20,7 @@ urlpatterns = [
     path('search-history/', views.SearchHistoryView.as_view()),
     path("remove-history/", views.DeleteHistory.as_view()),
     path("random/", views.RandomView.as_view()),
-    path("recent", views.RecentView.as_view()),
+    path("recent/", views.RecentView.as_view()),
     path("suggest", views.SuggestionView.as_view()),
     path('sendcode', views.SendCode.as_view()),
     path('activate/', views.AccountActivation.as_view(),name='activate'),

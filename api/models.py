@@ -48,3 +48,8 @@ class SearchHistory(models.Model):
     searcher_username=models.CharField(max_length=50, blank=True, null=True)
     moment=models.DateTimeField(auto_now_add=True)
 
+class SubmitLyrics(models.Model):
+    artist = models.CharField(max_length=250)
+    title = models.CharField(max_length=250)
+    body = models.TextField()
+
