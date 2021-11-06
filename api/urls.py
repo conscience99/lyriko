@@ -13,7 +13,7 @@ urlpatterns = [
     path('lyrics/savelist/remove/',views.RemoveSaveListView.as_view()),
     path('signin',views.SigninView.as_view()),
     path('signup',views.SignupView.as_view()),
-    path('user', views.UserDataView.as_view()),
+    path('user/', views.UserDataView.as_view()),
     path('checkusername/', views.CheckUserView.as_view()),
     path("checksavelist/", views.CheckSaveList.as_view()),
     path("trending", views.TrendingView.as_view()),
