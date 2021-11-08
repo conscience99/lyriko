@@ -162,12 +162,10 @@ class AccountActivation(APIView):
 
 class CodeConfirmation(APIView):
     def post(self, request, *args, **kwargs):
-        user=User.objects.get(username=request.user.username)
+        user=User.objects.get(email=request.data['email'])
         code=request.data['code']
         try:
             verification = VerificationCode.objects.get(user_id=user.id, code=int(code))
-            user.is_verified=True
-            user.save()
             verification.delete()
             return Response({'msg':'success'})
         except:
