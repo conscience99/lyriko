@@ -160,6 +160,18 @@ class AccountActivation(APIView):
         except:
             return Response({'error':'Invalid code.'})
 
+class CodeConfirmation(APIView):
+    def post(self, request, *args, **kwargs):
+        user=User.objects.get(username=request.user.username)
+        code=request.data['code']
+        try:
+            verification = VerificationCode.objects.get(user_id=user.id, code=int(code))
+            user.is_verified=True
+            user.save()
+            verification.delete()
+            return Response({'msg':'success'})
+        except:
+            return Response({'error':'Invalid code.'})
             
 class VerifyUser(APIView):
     def post(self, request, *args, **kwargs):

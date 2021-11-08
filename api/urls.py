@@ -27,6 +27,7 @@ urlpatterns = [
     path('verifycode', views.AccountActivation.as_view()),
     path("user/change-password/", views.ChangePassword.as_view()),
     path("user/acct/verify/", views.VerifyUser.as_view()),
+    path("user/code/confirm/", views.VerifyUser.as_view()),
     path("user/acct/modify/", views.modifyUser.as_view()),
     path("lyrics/related/", views.RelatedView.as_view())
 
