@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=models.User
         extra_kwargs={'username':{'required':True},'email_username':{'required':True},  'password':{'required':True, 'write_only':True,}, 'email':{'required':True,},'is_verified':{'write_only':False}}
-        fields=('username', 'email', 'first_name', 'last_name','password', 'email_username', 'is_verified')
+        fields=('username', 'email', 'first_name', 'last_name','password', 'email_username', 'is_verified', 'is_lyrics_admin')
 
 class SearchHistorySerializer(serializers.ModelSerializer):
     moment=serializers.DateTimeField(format='%b %d, %I:%M %P')
