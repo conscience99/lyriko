@@ -30,4 +30,4 @@ class SearchHistorySerializer(serializers.ModelSerializer):
 class SubmitLyricsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SubmitLyrics
-        fields=('title', 'artist', 'body')
+        fields=('id','title', 'artist', 'body')

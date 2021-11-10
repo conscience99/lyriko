@@ -16,8 +16,12 @@ class SHAdmin(admin.ModelAdmin):
 class VerificationCodeAdmin(admin.ModelAdmin):
     list_display=('code', 'user_id')
 
+class SubmitLyricsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'artist')
+
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Lyrics, LyricsAdmin)
 admin.site.register(models.SaveList, SaveListAdmin)
 admin.site.register(models.SearchHistory,SHAdmin)
 admin.site.register(models.VerificationCode, VerificationCodeAdmin)
+admin.site.register(models.SubmitLyrics, SubmitLyricsAdmin)

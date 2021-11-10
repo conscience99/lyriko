@@ -28,7 +28,13 @@ urlpatterns = [
     path("user/change-password/", views.ChangePassword.as_view()),
     path("user/acct/verify/", views.VerifyUser.as_view()),
     path("user/acct/modify/", views.modifyUser.as_view()),
-    path("lyrics/related/", views.RelatedView.as_view())
+    path("lyrics/related/", views.RelatedView.as_view()),
+    path("lyrics/submit/", views.SubmitLyricsv.as_view()),
+    path("lyrics/approve/", views.ApproveSubmitLyrics.as_view()),
+    path("sublyrics/list/", views.SubmitLyricsListView.as_view()),
+    path("sublyrics/single/", views.SubmitLyricsView.as_view()),
+    path("sublyrics/decline/", views.DeclineSubmitLyrics.as_view())
+   
 
 
 ]

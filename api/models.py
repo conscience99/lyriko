@@ -9,6 +9,7 @@ now=datetime.now()
 class User(AbstractUser):
     email_username=models.CharField(max_length=50, unique=True, blank=True, null=True)
     is_verified=models.BooleanField(default=False)
+    is_lyrics_admin = models.BooleanField(default=False)
     
     
      

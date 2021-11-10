@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from django.views import View
 from rest_framework import status
 from . models import SaveList, User, Lyrics, SearchHistory, VerificationCode, SubmitLyrics
-from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
+from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS, IsAdminUser
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import login, authenticate
@@ -522,48 +522,69 @@ class SigninView(APIView):
         else:
             return Response({'error':'Incorrect password'})
 
-class SubmitLyrics(APIView):
+class SubmitLyricsv(APIView):
     def post(self, request, *args, **kwargs):
         serializer = serializers.SubmitLyricsSerializer(data=request.data)
-        submitlyrics = SubmitLyrics()
         if serializer.is_valid:
-            submitlyrics.title = request.data['title']
-            submitlyrics.artist = request.data['artist']
-            submitlyrics.body = request.data['body']
-            submitlyrics.save()
+            sl=SubmitLyrics()
+            sl.title=request.data['title']
+            sl.artist=request.data['artist']
+            sl.body=request.data['body']
+            sl.save()
             response = {"msg":"OK"}
             return Response(response)
         else:
             return Response({serializers.errors})
 
 class ApproveSubmitLyrics(APIView):
+    permission_classes=[IsAuthenticated]
     def post(self, request, *args, **kwargs):
-        lyrics = Lyrics()
-        lyrics.artist = request.data['artist']
-        lyrics.title = request.data['title']
-        lyrics.body = request.data['body']
-        lyrics.save()
-        return Response({"msg":"OK"})
+        user = request.user
+        if user.is_lyrics_admin != True:
+            return Response({"Error":"Forbidden"})
+        else:
+            lyrics = Lyrics()
+            lyrics.artist = request.data['artist']
+            lyrics.artist_slug = request.data['artist'].strip().replace(" ","-").lower()
+            lyrics.title = request.data['title']
+            lyrics.title_slug=request.data['title'].strip().replace(" ","-").lower()
+            lyrics.body = request.data['body']
+            lyrics.save()
+            return Response({"msg":"OK"})
 
 class SubmitLyricsListView(APIView):
+    permission_classes=[IsAuthenticated]
     def get(self, request, *args, **kwargs):
-        sub = SubmitLyrics.objects.all()
-        serializer = serializers.SubmitLyricsSerializer(sub)
-        res = {"submit_lyrics_view":serializer.data}
-        return Response(res)
+        user=request.user
+        if user.is_lyrics_admin != True:
+            return Response({"Error":"Forbidden"})
+        else:
+            sub = SubmitLyrics.objects.all()
+            serializer = serializers.SubmitLyricsSerializer(sub, many=True)
+            res = {"submit_lyrics_view":serializer.data}
+            return Response(res)
 
 class SubmitLyricsView(APIView):
-    def get(self, request, *args, **kwargs):
-        item = SubmitLyrics.objects.get(id=request.data['id'])
-        serializer = serializers.SubmitLyricsSerializer(item)
-        res = {"submit_lyrics_item":serializer.data}
-        return Response(res)
+    permission_classes=[IsAuthenticated]
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_lyrics_admin != True:
+            return Response({"Error":"Forbidden"})
+        else:
+            item = SubmitLyrics.objects.get(id=request.data['id'])
+            serializer = serializers.SubmitLyricsSerializer(item, many=False)
+            res = {"submit_lyrics_item":serializer.data}
+            return Response(res)
 
 class DeclineSubmitLyrics(APIView):
     def post(self, request, *args, **kwargs):
-        item = SubmitLyrics.objects.get(id=request.data['id'])
-        item.delete()
-        return Response({"msg":"OK"})
+        user = request.user
+        if user.is_lyrics_admin != True:
+            return Response({"Error":"Forbidden"})
+        else:
+            item = SubmitLyrics.objects.get(id=request.data['id'])
+            item.delete()
+            return Response({"msg":"OK"})
 
 
 class RelatedView(APIView):
@@ -571,7 +592,7 @@ class RelatedView(APIView):
         lyrics = Lyrics.objects.filter(artist_slug=request.data['artist'])[0:10]
         serializer=serializers.LyricsSerializer(lyrics, many=True)
         response={"top":serializer.data}
-        return Response(response)
+        return Response(response) 
         
         
 
