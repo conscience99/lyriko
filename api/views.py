@@ -550,6 +550,7 @@ class ApproveSubmitLyrics(APIView):
             lyrics.title_slug=request.data['title'].strip().replace(" ","-").lower()
             lyrics.body = request.data['body']
             lyrics.save()
+            sl = SubmitLyrics.objects.get(id=request.data['id']).delete()
             return Response({"msg":"OK"})
 
 class SubmitLyricsListView(APIView):
