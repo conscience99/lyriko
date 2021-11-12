@@ -12,6 +12,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import login, authenticate
 import requests
+from django.db.models import Q
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
@@ -564,6 +565,27 @@ class RelatedView(APIView):
         return Response(response) 
         
         
+
+class SearchView(APIView):
+    def post(self, request, *args, **kwargs):
+        if request.data['term']:
+            term=request.data['term']
+            terms = term.split()
+            results =[]
+            for i in terms:
+                if i!="by":
+                    for j in Lyrics.objects.filter(title__icontains=i):
+                        results.append(j)
+                    for k in Lyrics.objects.filter(artist__icontains=i):
+                        results.append(k)
+            search_res = [i for j, i in enumerate(results) if i not in results[:j]]
+            serializer=serializers.LyricsSerializer(search_res, many=True)
+            response={"result":serializer.data}
+            return Response(response)
+        else:
+            return Response({"error":"Unavailable"})
+
+
 
 
         

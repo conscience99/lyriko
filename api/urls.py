@@ -33,7 +33,8 @@ urlpatterns = [
     path("lyrics/approve/", views.ApproveSubmitLyrics.as_view()),
     path("sublyrics/list/", views.SubmitLyricsListView.as_view()),
     path("sublyrics/single/", views.SubmitLyricsView.as_view()),
-    path("sublyrics/decline/", views.DeclineSubmitLyrics.as_view())
+    path("sublyrics/decline/", views.DeclineSubmitLyrics.as_view()),
+    path("lyrics/search/", views.SearchView.as_view()),
    
 
 
