@@ -219,6 +219,7 @@ class SingleLyricsView(APIView):
     def post(self, request, *args, **kwargs ):
         artist = request.data['artist'].strip().replace("-"," ").title()
         title=request.data['title'].strip().replace("-"," ").title()
+        print(title)
         search_history=SearchHistory()
         ### Record activities ###
         if title != "" or artist != "":
