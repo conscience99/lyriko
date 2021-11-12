@@ -34,7 +34,7 @@ urlpatterns = [
     path("sublyrics/list/", views.SubmitLyricsListView.as_view()),
     path("sublyrics/single/", views.SubmitLyricsView.as_view()),
     path("sublyrics/decline/", views.DeclineSubmitLyrics.as_view()),
-    path("lyrics/search/", views.SearchView.as_view()),
+    path("query/search/", views.SearchView.as_view()),
    
 
 
