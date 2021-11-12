@@ -566,7 +566,7 @@ class RelatedView(APIView):
         
         
 
-class SearchView(APIView):
+class SearchViewv(APIView):
     def post(self, request, *args, **kwargs):
         if request.data['term']:
             term=request.data['term']
