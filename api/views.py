@@ -217,11 +217,9 @@ class AddLyricsView(APIView):
 
 class SingleLyricsView(APIView):
     def post(self, request,artist_slug,title_slug, *args, **kwargs ):
-        title=request.data['title']
         artist = request.data['artist']
-        lyrics=Lyrics()
+        title=request.data['title']
         search_history=SearchHistory()
-        now=datetime.now()
         ### Record activities ###
         if title != "" or artist != "":
             search_history.searcher_username = request.data['username']
@@ -229,6 +227,7 @@ class SingleLyricsView(APIView):
             search_history.title=title.replace('-',' ')
             #search_history.moment=now.strftime("%B %d, %Y, %I:%M %p")
             search_history.save()
+
         try:
             lyrics_item=Lyrics.objects.get(artist_slug=artist_slug, title_slug=title_slug)
             views = lyrics_item.views
@@ -238,41 +237,9 @@ class SingleLyricsView(APIView):
             serializer=serializers.LyricsSerializer(lyrics_item, many=False)
             response={'lyrics':serializer.data}
             return Response(response,status=status.HTTP_200_OK )
+
         except:
-            _a = artist_slug.replace('-','')
-            _t = title_slug.replace('-','')
-            header = { 
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9", 
-                "Accept-Encoding": "gzip, deflate", 
-                "Accept-Language": "en-US,en;q=0.9", 
-                "Host": "www.azlyrics.com", 
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.99 Mobile DuckDuckGo/5 Safari/537.36", 
-                "X-Amzn-Trace-Id": "Root=1-61456c82-227ebd683713ca1b33a231c0", 
-                "X-Requested-With": "com.duckduckgo.mobile.android",
-                "Referer":"https://www.google.co.ke/",
-
-                 }
-            try:
-                req = urllib.request.Request(f'https://www.azlyrics.com/lyrics/{_a}/{_t}.html',headers=header)
-                resp = urllib.request.urlopen(req)
-                respData = resp.read()
-                divs = re.findall(r'<div>(.*?)</div>',str(respData))
-                un_wanted = '<!-- Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->'
-                data = divs[0].replace(un_wanted,'')
-                new_lyrics = Lyrics()
-                new_lyrics.artist = artist
-                new_lyrics.title = title
-                new_lyrics.title_slug = title_slug
-                new_lyrics.artist_slug = artist_slug
-                new_lyrics.body = data
-                new_lyrics.save()
-                lyrics = Lyrics.objects.get(title_slug=title_slug, artist_slug=artist_slug)
-                serializer=serializers.LyricsSerializer(lyrics)
-                resp = {'lyrics':serializer.data}
-                return Response(resp)
-            except:
-                return Response({'error':'Not Found'})
-
+            return Response({"error":"Not found"})
                
 
 class SearchHistoryView(APIView):
