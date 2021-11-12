@@ -217,9 +217,9 @@ class AddLyricsView(APIView):
 
 class SingleLyricsView(APIView):
     def post(self, request, *args, **kwargs ):
-        artist = request.data['artist'].capitalize().strip().replace("-"," ")
+        artist = request.data['artist'].strip().replace("-"," ").title()
         print(artist)
-        title=request.data['title'].capitalize().strip().replace("-"," ")
+        title=request.data['title'].strip().replace("-"," ").title()
         print(title)
         search_history=SearchHistory()
         ### Record activities ###
