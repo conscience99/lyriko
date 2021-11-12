@@ -218,7 +218,9 @@ class AddLyricsView(APIView):
 class SingleLyricsView(APIView):
     def post(self, request, *args, **kwargs ):
         artist = request.data['artist'].capitalize().strip().replace("-"," ")
+        print(artist)
         title=request.data['title'].capitalize().strip().replace("-"," ")
+        print(title)
         search_history=SearchHistory()
         ### Record activities ###
         if title != "" or artist != "":
