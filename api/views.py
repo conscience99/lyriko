@@ -230,7 +230,7 @@ class SingleLyricsView(APIView):
             search_history.save()
 
         try:
-            lyrics_item=Lyrics.objects.get(artist=artist, title=title)
+            lyrics_item=Lyrics.objects.get(artist_slug=request.data['artist'], title_slug=request.data['title'])
             views = lyrics_item.views
             updt_views=views+1
             lyrics_item.views = updt_views
