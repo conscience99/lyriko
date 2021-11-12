@@ -216,9 +216,9 @@ class AddLyricsView(APIView):
 
 
 class SingleLyricsView(APIView):
-    def post(self, request,artist_slug,title_slug, *args, **kwargs ):
-        artist = request.data['artist']
-        title=request.data['title']
+    def post(self, request, *args, **kwargs ):
+        artist = request.data['artist'].capitalize().strip().replace("-"," ")
+        title=request.data['title'].capitalize().strip().replace("-"," ")
         search_history=SearchHistory()
         ### Record activities ###
         if title != "" or artist != "":
@@ -229,7 +229,7 @@ class SingleLyricsView(APIView):
             search_history.save()
 
         try:
-            lyrics_item=Lyrics.objects.get(artist_slug=artist_slug, title_slug=title_slug)
+            lyrics_item=Lyrics.objects.get(artist=artist, title=title)
             views = lyrics_item.views
             updt_views=views+1
             lyrics_item.views = updt_views

@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     path('lyrics/',views.LyricsView.as_view()),
     path('lyrics/add',views.AddLyricsView.as_view()),
-    path('lyrics/<str:artist_slug>/<str:title_slug>',views.SingleLyricsView.as_view()),
+    path('lyrics/view/',views.SingleLyricsView.as_view()),
     path('lyrics/savelist/',views.SaveListView.as_view()),
     path('lyrics/savelist/add/',views.AddSaveListView.as_view()),
     path('lyrics/savelist/remove/',views.RemoveSaveListView.as_view()),
