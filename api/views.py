@@ -220,24 +220,21 @@ class SingleLyricsView(APIView):
     def post(self, request, *args, **kwargs ):
         artist = request.data['artist'].strip().replace("-"," ").title()
         title=request.data['title'].strip().replace("-"," ").title()
-        
         search_history=SearchHistory()
         ### Record activities ###
-        if title != "" or artist != "":
-            search_history.searcher_username = request.data['username']
-            search_history.artist=artist.replace('-',' ')
-            search_history.title=title.replace('-',' ')
-            #search_history.moment=now.strftime("%B %d, %Y, %I:%M %p")
-            search_history.save()
-
         try:
-            lyrics_item=Lyrics.objects.get(artist_slug=request.data['artist'], title_slug=request.data['title'])
+            lyrics_item=Lyrics.objects.get(artist_slug=artist, title_slug=title)
             views = lyrics_item.views
             updt_views=views+1
             lyrics_item.views = updt_views
             lyrics_item.save()
             serializer=serializers.LyricsSerializer(lyrics_item, many=False)
             response={'lyrics':serializer.data}
+            search_history.searcher_username = request.data['username']
+            search_history.artist=artist.replace('-',' ')
+            search_history.title=title.replace('-',' ')
+            #search_history.moment=now.strftime("%B %d, %Y, %I:%M %p")
+            search_history.save()
             return Response(response,status=status.HTTP_200_OK )
 
         except:
