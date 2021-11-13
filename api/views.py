@@ -221,24 +221,35 @@ class SingleLyricsView(APIView):
         artist = request.data['artist'].strip().replace("-"," ").title()
         title=request.data['title'].strip().replace("-"," ").title()
         search_history=SearchHistory()
-        ### Record activities ###
+        title_clean1=request.data['title'].strip().replace("ain-t", "aint")
+        title_clean2=title_clean1.replace('you-re', 'youre')
+        title_cleean3 = title_clean2.replace('isn-t', 'isnt')
+        title_clean4  =title_cleean3.replace('aren-t', 'arent')
+        title_clean_5= title_clean4.replace("weren-t","werent")
+        title_clean6 = title_clean_5.replace("can-t", "cant")
+        title_clean7 = title_clean6.replace('don-t', 'dont')
+        title_clean8 = title_clean7.replace('i-d', 'id').replace('i-ve', 'ive').replace('we-ve','weve',).replace('you-ve', 'youve').replace('he-s', 'hes').replace('she-s', 'shes').replace('it-s', 'its',).replace('you-d', 'youd').replace('i-ll', 'ill').replace("you-ll", "youll").replace('let-s', "lets").replace("amn't", "amnt").replace("haven-t","havent")
         try:
-            lyrics_item=Lyrics.objects.get(artist_slug=request.data['artist'], title_slug__icontains=request.data['title'])
+            lyrics_item=Lyrics.objects.get(artist_slug=request.data['artist'], title_slug__icontains=title_clean8)
             views = lyrics_item.views
             updt_views=views+1
             lyrics_item.views = updt_views
             lyrics_item.save()
             serializer=serializers.LyricsSerializer(lyrics_item, many=False)
             response={'lyrics':serializer.data}
+            ### Record activities ###
             search_history.searcher_username = request.data['username']
             search_history.artist=artist.replace('-',' ')
             search_history.title=title.replace('-',' ')
-            #search_history.moment=now.strftime("%B %d, %Y, %I:%M %p")
             search_history.save()
-            return Response(response,status=status.HTTP_200_OK )
+            return Response(response,status=status.HTTP_200_OK)
 
-        except:
-            return Response({"error":"Not found"})
+        except Lyrics.DoesNotExist:
+            return Response({"error":"Not Found"})
+
+
+
+        
                
 
 class SearchHistoryView(APIView):
