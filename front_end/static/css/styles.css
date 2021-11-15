@@ -722,7 +722,8 @@ img {
 }
 
 body {
-  background-image: url("https://i.ibb.co/k27sTHh/webb.png");
+  background-color: whitesmoke !important;
+  /* background-image: url("https://i.ibb.co/k27sTHh/webb.png"); */
   font-family: system-ui, -apple-system,
         /* Firefox supports this but not yet `system-ui` */ "Segoe UI", Roboto,
         Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
@@ -972,10 +973,6 @@ nav {
   border-bottom-left-radius: 5px;
   color: white;
   background: none;
-}
-
-form {
-  padding-top: 1.5rem;
 }
 
 #inputs-wrapper {
