@@ -53,7 +53,7 @@ function App() {
         checkAuth();
         getHistory();
         requestUser();
-    }, [token["token"]]);
+    }, [token, user]);
     const meta = {
         title: "Lyriko",
         description:
